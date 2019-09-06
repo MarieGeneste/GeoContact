@@ -40,7 +40,7 @@ class Configuration {
                 $filePath = "Config/prod.ini";
             }
             if (!file_exists($filePath)) {
-                throw new Exception("Aucun file de configuration trouvé");
+                throw new Exception("Aucun fichier de configuration trouvé");
             }
             else {
                 self::$parameters = parse_ini_file($filePath);

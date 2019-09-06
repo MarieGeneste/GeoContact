@@ -25,6 +25,9 @@
       <!-- Include of footer -->
       <?php require_once('Partials/footer.php') ?>
 
+    <!-- Include of footer -->
+    <?php require_once('Partials/cookies.php') ?>
+
     <!-- Script files links -->
     <script src="<?= $webroot ?>/public/js/jquery.min.js"></script>
     <script src="<?= $webroot ?>/public/js/popper.min.js"></script>
