@@ -2,6 +2,12 @@
 * Gestion de la mise en page de l'ensemble des pages
 */
 
+/* Varaible couleurs */
+:root {
+  --blue-geocontact: rgb(36, 130, 176);
+  --blue-light-geocontact: rgb(36, 130, 176);
+}
+
 /* GLOBAL CSS */
 
 * {
@@ -9,11 +15,11 @@
 }
 
 .bg-blue-geocontact{
-    background-color: rgb(36, 130, 176);
+    background-color: var(--blue-geocontact);
 }
 
 .bg-blue-light-geocontact{
-    background-color: rgba(36, 130, 176, 0.6);
+    background-color: var(--blue-light-geocontact);
 }
 
 footer{
@@ -25,4 +31,28 @@ footer{
 
 #accueil{
     height: 200px;
+}
+
+#cookies {
+  position: fixed;
+  bottom: 30px;
+  left: 15px;
+  width: calc(100vw - 30px);
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--blue-geocontact);
+  border-radius: 15px; 
+  padding: 10px;
+  height: 20%;
+}
+
+#cookiesChoices {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
+
+#cookiesChoices button {
+  height: 40%;
 }

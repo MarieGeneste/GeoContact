@@ -11,7 +11,8 @@ require_once 'Configuration.php';
 abstract class Model {
 
     /** PDO Object to access database shared by all Class */
-    private static $db;
+    protected static $db;
+    // protected static $result;
 
     /**
      * Execute an SQL request
@@ -36,7 +37,7 @@ abstract class Model {
      * 
      * @return PDO PDO Object to connect to the database
      */
-    private static function getDatabase() {
+    protected static function getDatabase() {
         if (self::$db === null) {
             // Get configuration parameters
             $dsn = Configuration::get("dsn");
