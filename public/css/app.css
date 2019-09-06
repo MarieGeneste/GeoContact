@@ -4,12 +4,21 @@
 
 /* GLOBAL CSS */
 
+* {
+    font-family: 'Karla', sans-serif;
+}
+
 .bg-blue-geocontact{
     background-color: rgb(36, 130, 176);
 }
 
 .bg-blue-light-geocontact{
-    background-color: rgb(36, 130, 176, 0.6);
+    background-color: rgba(36, 130, 176, 0.6);
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
 }
 
 /* Accueil CSS */
