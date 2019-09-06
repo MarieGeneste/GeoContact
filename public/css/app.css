@@ -1,3 +1,19 @@
 /*
 * Gestion de la mise en page de l'ensemble des pages
 */
+
+/* GLOBAL CSS */
+
+.bg-blue-geocontact{
+    background-color: rgb(36, 130, 176);
+}
+
+.bg-blue-light-geocontact{
+    background-color: rgb(36, 130, 176, 0.6);
+}
+
+/* Accueil CSS */
+
+#accueil{
+    height: 200px;
+}
