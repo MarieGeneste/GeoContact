@@ -23,7 +23,7 @@
 }
 
 footer{
-    position: absolute;
+    position: relative;
     bottom: 0;
 }
 
@@ -31,6 +31,36 @@ footer{
 
 #accueil{
     height: 200px;
+}
+
+.staggered.jumbotron{
+    position: relative;
+}
+
+.staggered:nth-child(even){
+    align-self: flex-end;
+    right: 0px;
+    border-radius: 10px 0 0 10px;
+}
+
+.staggered:nth-child(even) h3{
+    border-radius: 10px 0 0 0;
+}
+
+.staggered:nth-child(odd){
+    align-self: flex-start;
+    left: 0px;
+    border-radius: 0 10px 10px 0;
+}
+
+.staggered:nth-child(odd) h3{
+    border-radius: 0 10px 0 0;
+}
+
+.staggered h3{
+    margin: -24px -24px 24px;
+    padding: 24px;
+    border-radius: 10px 10px 0 0;
 }
 
 #cookies {

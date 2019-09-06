@@ -1,20 +1,20 @@
 <?php
 
 require_once 'Framework/Controller.php';
-// require_once 'Model/Var.php';
+require_once 'Model/Article.php';
 
 class ControllerHome extends Controller {
 
-    // private $var;
+    private $homeArticles;
 
-    // public function __construct() {
-    //     $this->var = new Variable();
-    // }
+    public function __construct() {
+        $this->homeArticles = new Article();
+    }
 
     // Affiche la page d'acceuil
     public function index() {
-        // $vars = $this->var->getBillets();
-        // $this->generateView(array('vars' => $vars));
+        $articles = $this->homeArticles->getArticles();
+        $this->generateView(array('articles' => $articles));
         $this->generateView();
     }
 
