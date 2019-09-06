@@ -5,7 +5,7 @@
 /* Varaible couleurs */
 :root {
   --blue-geocontact: rgb(36, 130, 176);
-  --blue-light-geocontact: rgb(36, 130, 176);
+  --blue-light-geocontact: rgba(36, 130, 176, 0.6);
 }
 
 /* GLOBAL CSS */
