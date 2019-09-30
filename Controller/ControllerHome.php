@@ -15,8 +15,6 @@ class ControllerHome extends Controller {
     public function index() {
         $articles = $this->homeArticles->getArticles();
         $this->generateView(array('articles' => $articles));
-        $this->generateView();
     }
 
 }
-
