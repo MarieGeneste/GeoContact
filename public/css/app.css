@@ -2,20 +2,6 @@
 * Gestion de la mise en page de l'ensemble des pages
 */
 
-/* NOTE scrollbar */
-
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--blue-light-geocontact); 
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--blue-geocontact);
-}
-
 /* Varaible couleurs */
 :root {
   --blue-geocontact: rgb(36, 130, 176);
@@ -23,6 +9,9 @@
 }
 
 /* GLOBAL CSS */
+#accueil img {
+    max-width: 100%;
+}
 
 * {
     font-family: 'Karla', sans-serif;
@@ -79,7 +68,6 @@ footer{
 }
 
 #cookies {
-  display: none;
   position: fixed;
   bottom: 30px;
   left: 15px;
@@ -126,19 +114,17 @@ footer{
     display: inline-block;
 }
 
-.container.dashboard header.head-list span.add-listing {
-    float: right;
-    display: inline-block;
+.container.dashboard header.head-list .add-listing {
+    text-align: right;
+    display: block;
 }
-.container.dashboard header.head-list span.add-listing button{
-    width: 100%;
-    height: 100%;
+.container.dashboard header.head-list .add-listing button{
     border: none;
     background-color: unset;
     color: #fff;
     font-size: 1.2rem;
 }
-.container.dashboard header.head-list span.add-listing button svg{
+.container.dashboard header.head-list .add-listing button svg{
     width: 32px;
     height: 32px;
 }
@@ -162,3 +148,18 @@ footer{
     display: inline-block;
 }
 /* !SECTION */
+
+@media (max-width: 576px) {
+    .container.dashboard header.head-list h2 {
+        color: #fff;
+        display: inline-block;
+        font-size: 1.2rem;
+    }
+    .container.dashboard header.head-list .add-listing button svg {
+        width: 24px;
+        height: 24px;
+        vertical-align: text-bottom;
+    }
+
+    
+}

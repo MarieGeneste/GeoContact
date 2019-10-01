@@ -2,9 +2,9 @@
 <?php $pageTitle = "Accueil" ?>
 
 <?php if($pageTitle == "Accueil"){ ?>
-    <header id="accueil" class="container-fluid">
+    <header id="accueil">
     <!-- Header page d'accueil -->
-        <div class="row h-100 bg-blue-light-geocontact d-flex align-items-center flex-column">
+        <div class="h-100 bg-blue-light-geocontact d-flex align-items-center flex-column">
         <img src="<?= $webroot ?>/public/images/logoGeoContact2.png" width="400" alt="Logo GéoContact">
         <!-- Masthead Heading -->
         <h1 class="text-uppercase d-none">GéoContact</h1>
