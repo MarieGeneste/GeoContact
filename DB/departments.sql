@@ -1,3 +1,5 @@
+-- Fichier à IMPORTER puis EXECUTER depuis la table "Departements"
+
 INSERT INTO Departements
   (code, libelle, idUserMaj, dateMaj)
 VALUES

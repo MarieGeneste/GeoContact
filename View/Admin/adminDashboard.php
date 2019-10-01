@@ -15,49 +15,21 @@
         <table class="table table-bordered table-striped mb-0">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Code</th>
+                    <th scope="col">Libelle</th>
+                    <th scope="col">Editer</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">6</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                <?php if (!empty($departments)) {
+                    foreach ($departments as $department) { ?>
+                        <tr>
+                            <th scope="row"><?= $department["code"] ?></th>
+                            <td><?= $department["libelle"] ?></td>
+                            <td class="text-center"><i class="fa fa-edit" style="font-size:36px"></i></td>
+                        </tr>
+                    <?php }
+                } ?>
             </tbody>
         </table>
 
@@ -151,49 +123,25 @@
         <table class="table table-bordered table-striped mb-0">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Code Postal</th>
+                    <th scope="col">Ville</th>
+                    <th scope="col">Departement</th>
+                    <th scope="col">Code Insee</th>
+                    <th scope="col">Editer</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">6</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                <?php if (!empty($localites)) {
+                    foreach ($localites as $localite) { ?>
+                        <tr>
+                            <th scope="row"><?= $localite["codePostal"] ?></th>
+                            <td><?= $localite["libelle"] ?></td>
+                            <th scope="col"><?= $localite["libelle"] ?></th>
+                            <th scope="col"><?= $localite["libelle"] ?></th>
+                            <td><i class="fa fa-edit" style="font-size:36px"></i></td>
+                        </tr>
+                    <?php }
+                } ?>
             </tbody>
         </table>
     </div>
