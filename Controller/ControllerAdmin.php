@@ -2,13 +2,19 @@
 
 require_once 'Framework/Controller.php';
 require_once 'Model/User.php';
+require_once 'Model/Department.php';
+require_once 'Model/Localite.php';
 
 class ControllerAdmin extends Controller {
 
-    private $User;
+    private $user;
+    private $department;
+    private $localite;
 
     public function __construct() {
-        $this->User = new User();
+        $this->user = new User();
+        $this->department = new Department();
+        $this->localite = new Localite();
     }
 
     // Affiche la page de connexion
@@ -22,10 +28,17 @@ class ControllerAdmin extends Controller {
         $email = $_POST["email"];
         $password = $_POST["password"];
 
-        $adminSession = $this->User->checkAdmin($email, $password);
+        $adminSession = $this->user->checkAdmin($email, $password);
+        $departments = $this->department->getDepartments();
+        $localites = $this->localite->getLocalites();
 
         if ($adminSession != null) {
-            $this->generateView(array('user' => $adminSession));
+
+            $this->generateView([
+                'user' => $adminSession,
+                'departments' => $departments,
+                'localites' => $localites
+            ]);
         } else {
             throw new Exception("Identifiants invalides", 403);
         }
