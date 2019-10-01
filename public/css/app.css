@@ -163,3 +163,8 @@ footer{
 
     
 }
+
+
+#edit-dep, #add-dep, #edit-loc, #add-loc {
+    display: none;
+}
