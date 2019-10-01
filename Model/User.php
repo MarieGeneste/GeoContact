@@ -12,7 +12,7 @@ class User extends Model {
                 
         $adminSession = $this->executeRequest($sql, array(":email" => $email, ":pwd" => $password));
         
-        return $adminSession->fetch();;
+        return $adminSession->fetch();
     }
 
 }
