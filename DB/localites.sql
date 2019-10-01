@@ -1,5 +1,7 @@
+-- Fichier à IMPORTER puis EXECUTER depuis la table "Localites"
+
 INSERT INTO Localites
-  (codePostal, libelle, idUserMaj, dateMaj, idDepartements)
+  (libelle, codePostal, idUserMaj, dateMaj, idDepartements)
 VALUES
 ("L ABERGEMENT CLEMENCIAT", "1400", 1, "2019-10-01 00:00:00", 102),
 ("L ABERGEMENT DE VAREY", "1640", 1, "2019-10-01 00:00:00", 102),
