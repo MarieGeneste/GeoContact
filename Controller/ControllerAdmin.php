@@ -18,7 +18,7 @@ class ControllerAdmin extends Controller {
         $this->generateView();
     }
 
-    public function adminDashbord(){
+    public function adminDashboard(){
         $email = $_POST["email"];
         $password = $_POST["password"];
 

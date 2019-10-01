@@ -2,6 +2,20 @@
 * Gestion de la mise en page de l'ensemble des pages
 */
 
+/* NOTE scrollbar */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--blue-light-geocontact); 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--blue-geocontact);
+}
+
 /* Varaible couleurs */
 :root {
   --blue-geocontact: rgb(36, 130, 176);
@@ -23,7 +37,7 @@
 }
 
 footer{
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
 }
@@ -65,11 +79,11 @@ footer{
 }
 
 #cookies {
+  display: none;
   position: fixed;
   bottom: 30px;
   left: 15px;
   width: calc(100vw - 30px);
-  display: flex;
   align-items: center;
   border: 2px solid var(--blue-geocontact);
   border-radius: 15px; 
@@ -87,3 +101,64 @@ footer{
 #cookiesChoices button {
   height: 40%;
 }
+
+
+/* SECTION Admin dashboard */
+
+.container.dashboard .table-wrapper-scroll-y.scrollbar {
+    position: relative;
+    height: calc(69.20px * 5);
+    overflow: auto;
+    }
+.container.dashboard .table-wrapper-scroll-y {
+    display: block;
+    }
+.container.dashboard header.head-list  {
+    padding: 1rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: var(--blue-light-geocontact);
+    position: relative;
+    margin-top: 1rem;
+}
+.container.dashboard header.head-list h2 {
+    color: #fff;
+    display: inline-block;
+}
+
+.container.dashboard header.head-list span.add-listing {
+    float: right;
+    display: inline-block;
+}
+.container.dashboard header.head-list span.add-listing button{
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: unset;
+    color: #fff;
+    font-size: 1.2rem;
+}
+.container.dashboard header.head-list span.add-listing button svg{
+    width: 32px;
+    height: 32px;
+}
+
+.container.dashboard .panel {
+    background-color: #efefef;
+    padding: 1.5rem;
+}
+.container.dashboard .panel .require-msg {
+    color: RED;
+    margin: 5px 0;
+}
+.container.dashboard .panel b {
+    color: RED;
+}
+.container.dashboard .panel .btn.submit{
+    text-align: right;
+}
+.container.dashboard .panel .btn.trash {
+    color: #fff;
+    display: inline-block;
+}
+/* !SECTION */
