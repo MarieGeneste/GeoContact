@@ -136,9 +136,9 @@
                         <tr>
                             <th scope="row"><?= $localite["codePostal"] ?></th>
                             <td><?= $localite["libelle"] ?></td>
-                            <th scope="col"><?= $localite["libelle"] ?></th>
-                            <th scope="col"><?= $localite["libelle"] ?></th>
-                            <td><i class="fa fa-edit" style="font-size:36px"></i></td>
+                            <th scope="col">01</th>
+                            <th scope="col"></th>
+                            <td class="text-center"><i class="fa fa-edit" style="font-size:36px"></i></td>
                         </tr>
                     <?php }
                 } ?>
