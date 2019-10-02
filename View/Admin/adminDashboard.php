@@ -1,15 +1,20 @@
 <?php $this->title = "Dashboard admin"; ?>
 <div class="container dashboard">
     <header class="head-list">
-        <h2>Département</h2>
-        <span class="add-listing"><button class="add-dep-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-plus-circle">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="12" y1="8" x2="12" y2="16"></line>
-                    <line x1="8" y1="12" x2="16" y2="12"></line>
-                </svg></button></span>
+        <div class="col-12 p-0 d-flex flex-wrap align-items-center">
+            <h2 class="col-9 m-0">Département</h2>
+            <div class="add-listing p-0 col-3">
+                <button class="add-dep-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-plus-circle">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                    </svg>
+            </button>
+            </div>
+        </div>
     </header>
     <div class="table-wrapper-scroll-y scrollbar">
         <table class="table table-bordered table-striped mb-0">
@@ -36,14 +41,18 @@
     </div>
     <div id="add-dep">
         <header class="head-list">
-            <h2>Ajouter un département</h2>
-            <div class="add-listing"><button class="add-dep-btn">
+            <div class="col-12 p-0 d-flex flex-wrap align-items-center">
+                <h2 class="col-9 m-0">Ajouter un département</h2>
+                <div class="add-listing p-0 col-3"><button class="add-dep-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="feather feather-plus-circle">
                         <circle cx="12" cy="12" r="10"></circle>
                         <line x1="8" y1="12" x2="16" y2="12"></line>
-                    </svg> RETOUR</button></div>
+                    </svg> RETOUR</button>
+                </div>
+
+            </div>
         </header>
         <div class="panel">
             <div class="container">
@@ -59,8 +68,8 @@
                         </div>
                     </div>
                     <span class="require-msg">* champs obligatoires</span>
-                    <div class="form-group text-right">
-                        <button type="submit" class="btn btn-primary submit">Ajouter</button>
+                    <div class="form-group text-right mb-0 mt-3">
+                        <button type="submit" class="btn btn-success submit">Ajouter</button>
                     </div>
                 </form>
             </div>
@@ -69,14 +78,19 @@
 
     <div id="edit-dep">
     <header class="head-list">
-        <h2>Modifier un département</h2>
-        <div id="edit-dep" class="add-listing"><button class="edit-dep-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-plus-circle">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="8" y1="12" x2="16" y2="12"></line>
-                </svg> RETOUR</button></div>
+        <div class="col-12 p-0 d-flex flex-wrap align-items-center">
+            <h2 class="col-9 m-0">Modifier un département</h2>
+            <div id="edit-dep" class="add-listing col-3 p-0">
+                <button class="edit-dep-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-plus-circle">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                    </svg> RETOUR
+                </button>
+            </div>
+        </div>
     </header>
     <div class="panel">
             <div class="container">
@@ -101,7 +115,7 @@
                                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                             </svg>
                         </button>
-                        <button type="submit" class="btn btn-primary submit">Modifier</button>
+                        <button type="submit" class="btn btn-success submit">Modifier</button>
                     </div>
                 </form>
             </div>
@@ -109,15 +123,20 @@
     </div>
 
     <header class="head-list">
-        <h2>Localités</h2>
-        <span class="add-listing"><button class="add-loc-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-plus-circle">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="12" y1="8" x2="12" y2="16"></line>
-                    <line x1="8" y1="12" x2="16" y2="12"></line>
-                </svg></button></span>
+        <div class="col-12 p-0 d-flex flex-wrap align-items-center">
+            <h2 class="col-9 m-0">Localités</h2>
+            <div class="add-listing p-0 col-3">
+                <button class="add-loc-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-plus-circle">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
     </header>
     <div class="table-wrapper-scroll-y scrollbar">
         <table class="table table-bordered table-striped mb-0">
@@ -148,14 +167,19 @@
 
     <div id="edit-loc">
         <header class="head-list">
-            <h2>Editer une localité</h2>
-            <div class="add-listing"><button class="edit-loc-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-plus-circle">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="8" y1="12" x2="16" y2="12"></line>
-                    </svg> RETOUR</button></div>
+            <div class="col-12 p-0 d-flex flex-wrap align-items-center">
+                <h2 class="col-9 m-0">Editer une localité</h2>
+                <div class="add-listing p-0 col-3">
+                    <button class="edit-loc-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-plus-circle">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg> RETOUR
+                    </button>
+                </div>
+            </div>
         </header>
         <div class="panel">
             <div class="container">
@@ -190,7 +214,7 @@
                                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                             </svg>
                         </button>
-                        <button type="submit" class="btn btn-primary submit">Modifier</button>
+                        <button type="submit" class="btn btn-success submit">Modifier</button>
                     </div>
                 </form>
             </div>
@@ -199,14 +223,19 @@
 
     <div id="add-loc">
         <header class="head-list">
-            <h2>Ajouter une localité</h2>
-            <div class="add-listing"><button class="add-loc-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-plus-circle">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="8" y1="12" x2="16" y2="12"></line>
-                    </svg> RETOUR</button></div>
+            <div class="col-12 p-0 d-flex flex-wrap align-items-center">
+                <h2 class="col-9 m-0">Ajouter une localité</h2>
+                <div class="add-listing p-0 col-3">
+                    <button class="add-loc-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-plus-circle">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg> RETOUR
+                    </button>
+                </div>
+            </div>
         </header>
         <div class="panel">
             <div class="container">
@@ -232,9 +261,8 @@
                         </div>
                     </div>
                     <span class="require-msg">* champs obligatoires</span>
-                    <div class="form-group text-right">
-                        
-                        <button type="submit" class="btn btn-primary submit">Modifier</button>
+                    <div class="form-group text-right mb-0 mt-3">
+                        <button type="submit" class="btn btn-success submit">Modifier</button>
                     </div>
                 </form>
             </div>
