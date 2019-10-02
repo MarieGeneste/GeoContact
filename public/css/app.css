@@ -172,7 +172,10 @@ footer{
 nav.admin-navigation {
     width: 100%;
     position: relative;
-    bakcground-color: #ededed;
+    background-color: #ededed;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 nav.admin-navigation .tab {

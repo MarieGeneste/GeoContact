@@ -4,17 +4,17 @@
         <div class="row">
             <div class="col-8">
                 <ul class="tab">
-                    <li class="item">Départements</li>
-                    <li class="item">Localités</li>
+                    <li class="item"><a href="/Admin/adminDashboard#section-dep" class="fw-bold text-white">Départements</a></li>
+                    <li class="item"><a href="/Admin/adminDashboard#section-loc" class="fw-bold text-white">Localités</a></li>
                 </ul>
             </div>
             <div class="col-4">
-                <button class="btn btn-danger">Déconnexion</button>
+                <a href="Admin/adminDisconnect" class="btn btn-danger">Déconnexion</a>
             </div>
         </div>
     </div>
 </nav>
-<div class="container dashboard">
+<div class="container dashboard" id="section-dep">
     <header class="head-list">
         <div class="col-12 p-0 d-flex flex-wrap align-items-center">
             <h2 class="col-9 m-0">Département</h2>
@@ -139,7 +139,7 @@
         </div>
     </div>
 
-    <header class="head-list">
+    <header class="head-list" id="section-loc">
         <div class="col-12 p-0 d-flex flex-wrap align-items-center">
             <h2 class="col-9 m-0">Localités</h2>
             <div class="add-listing p-0 col-3">

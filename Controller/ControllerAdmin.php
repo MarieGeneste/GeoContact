@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 require_once 'Framework/Controller.php';
 require_once 'Model/User.php';
 require_once 'Model/Department.php';
