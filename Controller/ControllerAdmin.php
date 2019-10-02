@@ -205,6 +205,7 @@ class ControllerAdmin extends Controller {
         // destroy the session
         $_SESSION["adminGeoContact"] = false;
         session_destroy();
-    }
+
+        header('Location: ' . $this->webroot . 'Admin');    }
 
 }
