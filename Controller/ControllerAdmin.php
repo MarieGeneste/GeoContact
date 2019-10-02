@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once 'Framework/Controller.php';
 require_once 'Model/User.php';
 require_once 'Model/Department.php';
@@ -10,11 +12,13 @@ class ControllerAdmin extends Controller {
     private $user;
     private $department;
     private $localite;
+    private $webroot;
 
     public function __construct() {
         $this->user = new User();
         $this->department = new Department();
         $this->localite = new Localite();
+        $this->webroot = Configuration::get("webroot");
     }
 
     // Affiche la page de connexion
@@ -25,23 +29,47 @@ class ControllerAdmin extends Controller {
     }
 
     public function adminDashboard(){
-        $email = $_POST["email"];
-        $password = $_POST["password"];
 
-        $adminSession = $this->user->checkAdmin($email, $password);
-        $departments = $this->department->getDepartments();
-        $localites = $this->localite->getLocalites();
+        $adminSession = $_SESSION["adminGeoContact"];
+        
+        if ($adminSession == true) {
 
-        if ($adminSession != null) {
-
+            $departments = $this->department->getDepartments();
+            $localites = $this->localite->getLocalites();
+            
             $this->generateView([
                 'user' => $adminSession,
                 'departments' => $departments,
                 'localites' => $localites
             ]);
         } else {
-            throw new Exception("Identifiants invalides", 403);
+            header('Location: ' . $this->webroot . 'Admin');
         }
+    }
+
+    public function adminConnect(){
+
+        $adminSession = $_SESSION["adminGeoContact"];
+
+        if ($adminSession == false) {
+            $email = $_POST["email"];
+            $password = $_POST["password"];
+            $adminAccess = $this->user->checkAdmin($email, $password);
+
+            if ($adminAccess != null) {
+
+                $_SESSION["adminGeoContact"] = true;
+                
+                header('Location: ' . $this->webroot . 'Admin/adminDashboard');
+            }
+        }
+    }
+
+    public function adminDisconnect(){
+
+        // destroy the session
+        $_SESSION["adminGeoContact"] = false;
+        session_destroy();
     }
 
 }
