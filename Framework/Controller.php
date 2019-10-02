@@ -37,7 +37,12 @@ abstract class Controller {
     {
         if (method_exists($this, $action)) {
             $this->action = $action;
-            $this->{$this->action}();
+            if($_GET["id"]){
+                $id = Security::verifyInput($_GET["id"]);
+                $this->{$this->action}($id);
+            } else {
+                $this->{$this->action}();
+            }
         }
         else {
             $classController = get_class($this);
