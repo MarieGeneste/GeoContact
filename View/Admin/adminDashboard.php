@@ -1,5 +1,20 @@
 <?php $this->title = "Dashboard admin"; ?>
-<div class="container dashboard">
+<nav class="admin-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <ul class="tab">
+                    <li class="item"><a href="/Admin/adminDashboard#section-dep" class="fw-bold text-white">Départements</a></li>
+                    <li class="item"><a href="/Admin/adminDashboard#section-loc" class="fw-bold text-white">Localités</a></li>
+                </ul>
+            </div>
+            <div class="col-4">
+                <a href="Admin/adminDisconnect" class="btn btn-danger">Déconnexion</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container dashboard" id="section-dep">
     <header class="head-list">
         <div class="col-12 p-0 d-flex flex-wrap align-items-center">
             <h2 class="col-9 m-0">Département</h2>
@@ -12,7 +27,7 @@
                         <line x1="12" y1="8" x2="12" y2="16"></line>
                         <line x1="8" y1="12" x2="16" y2="12"></line>
                     </svg>
-            </button>
+                </button>
             </div>
         </div>
     </header>
@@ -28,12 +43,12 @@
             <tbody>
                 <?php if (!empty($departments)) {
                     foreach ($departments as $department) { ?>
-                        <tr>
-                            <th scope="row"><?= $department["code"] ?></th>
-                            <td><?= $department["libelle"] ?></td>
-                            <td class="text-center"><i class="fa fa-edit" style="font-size:26px"></i></td>
-                        </tr>
-                    <?php }
+                <tr>
+                    <th scope="row"><?= $department["code"] ?></th>
+                    <td><?= $department["libelle"] ?></td>
+                    <td class="text-center"><i class="fa fa-edit" style="font-size:26px"></i></td>
+                </tr>
+                <?php }
                 } ?>
             </tbody>
         </table>
@@ -44,12 +59,12 @@
             <div class="col-12 p-0 d-flex flex-wrap align-items-center">
                 <h2 class="col-9 m-0">Ajouter un département</h2>
                 <div class="add-listing p-0 col-3"><button class="add-dep-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-plus-circle">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="8" y1="12" x2="16" y2="12"></line>
-                    </svg> RETOUR</button>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-plus-circle">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg> RETOUR</button>
                 </div>
 
             </div>
@@ -77,22 +92,22 @@
     </div>
 
     <div id="edit-dep">
-    <header class="head-list">
-        <div class="col-12 p-0 d-flex flex-wrap align-items-center">
-            <h2 class="col-9 m-0">Modifier un département</h2>
-            <div id="edit-dep" class="add-listing col-3 p-0">
-                <button class="edit-dep-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-plus-circle">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="8" y1="12" x2="16" y2="12"></line>
-                    </svg> RETOUR
-                </button>
+        <header class="head-list">
+            <div class="col-12 p-0 d-flex flex-wrap align-items-center">
+                <h2 class="col-9 m-0">Modifier un département</h2>
+                <div id="edit-dep" class="add-listing col-3 p-0">
+                    <button class="edit-dep-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-plus-circle">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg> RETOUR
+                    </button>
+                </div>
             </div>
-        </div>
-    </header>
-    <div class="panel">
+        </header>
+        <div class="panel">
             <div class="container">
                 <form>
                     <div class="form-row">
@@ -108,11 +123,13 @@
                     <span class="require-msg">* champs obligatoires</span>
                     <div class="form-group text-right">
                         <button type="submit" class="btn btn-danger trash">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                class="feather feather-trash">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-trash">
                                 <polyline points="3 6 5 6 21 6"></polyline>
-                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                <path
+                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                </path>
                             </svg>
                         </button>
                         <button type="submit" class="btn btn-success submit">Modifier</button>
@@ -122,7 +139,7 @@
         </div>
     </div>
 
-    <header class="head-list">
+    <header class="head-list" id="section-loc">
         <div class="col-12 p-0 d-flex flex-wrap align-items-center">
             <h2 class="col-9 m-0">Localités</h2>
             <div class="add-listing p-0 col-3">
@@ -152,14 +169,14 @@
             <tbody>
                 <?php if (!empty($localites)) {
                     foreach ($localites as $localite) { ?>
-                        <tr>
-                            <th scope="row"><?= $localite["codePostal"] ?></th>
-                            <td><?= $localite["libelle"] ?></td>
-                            <th scope="col">01</th>
-                            <th scope="col"></th>
-                            <td class="text-center"><i class="fa fa-edit" style="font-size:26px"></i></td>
-                        </tr>
-                    <?php }
+                <tr>
+                    <th scope="row"><?= $localite["codePostal"] ?></th>
+                    <td><?= $localite["libelle"] ?></td>
+                    <th scope="col">01</th>
+                    <th scope="col"></th>
+                    <td class="text-center"><i class="fa fa-edit" style="font-size:26px"></i></td>
+                </tr>
+                <?php }
                 } ?>
             </tbody>
         </table>
@@ -207,11 +224,13 @@
                     <span class="require-msg">* champs obligatoires</span>
                     <div class="form-group text-right">
                         <button type="submit" class="btn btn-danger trash">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                class="feather feather-trash">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-trash">
                                 <polyline points="3 6 5 6 21 6"></polyline>
-                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                <path
+                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                </path>
                             </svg>
                         </button>
                         <button type="submit" class="btn btn-success submit">Modifier</button>

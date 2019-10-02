@@ -168,3 +168,35 @@ footer{
 #edit-dep, #add-dep, #edit-loc, #add-loc {
     display: none;
 }
+
+nav.admin-navigation {
+    width: 100%;
+    position: relative;
+    background-color: #ededed;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav.admin-navigation .tab {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+nav.admin-navigation .tab .item {
+    padding: 0.5rem;
+    vertical-align: text-top;
+    display: inline-block;
+    font-size: 0.8rem;
+    color: #fff;
+}
+
+nav.admin-navigation .btn  {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+}
+nav.admin-navigation {
+    background-color: #6196b0;
+}
