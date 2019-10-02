@@ -4,8 +4,8 @@
         <div class="row">
             <div class="col-8">
                 <ul class="tab">
-                    <li class="item"><a href="/Admin/adminDashboard#section-dep" class="fw-bold text-white">Départements</a></li>
-                    <li class="item"><a href="/Admin/adminDashboard#section-loc" class="fw-bold text-white">Localités</a></li>
+                    <li class="item"><a href="Admin/adminDashboard#section-dep" class="fw-bold text-white">Départements</a></li>
+                    <li class="item"><a href="Admin/adminDashboard#section-loc" class="fw-bold text-white">Localités</a></li>
                 </ul>
             </div>
             <div class="col-4">
@@ -43,10 +43,10 @@
             <tbody>
                 <?php if (!empty($departments)) {
                     foreach ($departments as $department) { ?>
-                <tr>
-                    <th scope="row"><?= $department["code"] ?></th>
-                    <td><?= $department["libelle"] ?></td>
-                    <td class="text-center"><i class="fa fa-edit" style="font-size:26px"></i></td>
+                <tr id="<?= $department["id"] ?>" class="department-info">
+                    <th scope="row" class="dep-info-code"><?= $department["code"] ?></th>
+                    <td class="dep-info-libelle"><?= $department["libelle"] ?></td>
+                    <td class="text-center"><i class="fa fa-edit dep-edition" style="font-size:26px"></i></td>
                 </tr>
                 <?php }
                 } ?>
@@ -71,15 +71,15 @@
         </header>
         <div class="panel">
             <div class="container">
-                <form>
+                <form action="Admin/departmentInsert" method="post">
                     <div class="form-row">
                         <div class="col-md-4">
                             <label for="code">Code <b>*</b></label>
-                            <input type="text" class="form-control" placeholder="Code">
+                            <input name="dep-new-code" type="text" class="form-control" placeholder="Code">
                         </div>
                         <div class="col-md-8">
                             <label for="libelle">Libellé <b>*</b></label>
-                            <input type="text" class="form-control" placeholder="Libellé">
+                            <input name="dep-new-libelle" type="text" class="form-control" placeholder="Libellé">
                         </div>
                     </div>
                     <span class="require-msg">* champs obligatoires</span>
@@ -109,20 +109,21 @@
         </header>
         <div class="panel">
             <div class="container">
-                <form>
+                <form method="post">
                     <div class="form-row">
                         <div class="col-md-4">
                             <label for="code">Code <b>*</b></label>
-                            <input type="text" class="form-control" placeholder="Code">
+                            <input id="dep-edit-code" name="dep-edit-code" type="text" class="form-control" placeholder="Code">
                         </div>
                         <div class="col-md-8">
                             <label for="libelle">Libellé <b>*</b></label>
-                            <input type="text" class="form-control" placeholder="Libellé">
+                            <input id="dep-edit-libelle" name="dep-edit-libelle" type="text" class="form-control" placeholder="Libellé">
                         </div>
+                        <input id="dep-edit-id" name="dep-edit-id" type="hidden">
                     </div>
                     <span class="require-msg">* champs obligatoires</span>
                     <div class="form-group text-right">
-                        <button type="submit" class="btn btn-danger trash">
+                        <button type="submit" formaction="Admin/departmentDelete" class="btn btn-danger trash">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="feather feather-trash">
@@ -132,7 +133,7 @@
                                 </path>
                             </svg>
                         </button>
-                        <button type="submit" class="btn btn-success submit">Modifier</button>
+                        <button id="department-edit-validation" type="submit" class="btn btn-success submit">Modifier</button>
                     </div>
                 </form>
             </div>
