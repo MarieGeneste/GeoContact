@@ -31,7 +31,7 @@
                         <tr>
                             <th scope="row"><?= $department["code"] ?></th>
                             <td><?= $department["libelle"] ?></td>
-                            <td class="text-center"><i class="fa fa-edit" style="font-size:36px"></i></td>
+                            <td class="text-center"><i class="fa fa-edit" style="font-size:26px"></i></td>
                         </tr>
                     <?php }
                 } ?>
@@ -157,7 +157,7 @@
                             <td><?= $localite["libelle"] ?></td>
                             <th scope="col">01</th>
                             <th scope="col"></th>
-                            <td class="text-center"><i class="fa fa-edit" style="font-size:36px"></i></td>
+                            <td class="text-center"><i class="fa fa-edit" style="font-size:26px"></i></td>
                         </tr>
                     <?php }
                 } ?>
