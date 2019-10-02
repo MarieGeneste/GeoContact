@@ -14,4 +14,57 @@ class Localite extends Model {
         return $localites->fetchAll();
     }
 
+    /** 
+     * Retourne une localité
+     * var $depId = id de la localité recherchée
+     */
+    public function findOneBy($id) {
+
+        $sql = "SELECT * FROM `Localites` WHERE `id` = ?";
+        $localite = $this->executeRequest($sql, array($id));
+
+        return $localite->fetch();
+    }
+
+    /** 
+     * Retourne un département
+     * @param string $codePostal = codePostal du département recherché
+     * @param string $libelle = libelle du département recherché
+     */
+    public function insertLoc($codePostal, $libelle, $codeInsee, $depId, $userId) {
+
+        $sql = "INSERT INTO `Localite` (codePostal, libelle, codeInsee, idDepartements, idUserMaj, dateMaj) VALUES (:codePostal, :libelle, :codeInsee, :depId, :idUserMaj, CURRENT_TIMESTAMP)";
+        $this->executeRequest($sql, ["codePostal" => $codePostal, "libelle" => $libelle, "codeInsee" => $codeInsee, "depId" => $depId, "idUserMaj" => $userId]);
+
+        return true;
+    }
+
+    /** 
+     * Retourne un département
+     * @param int $id = id du département recherché
+     * @param string $codePostal = codePostal du département recherché
+     * @param string $libelle = libelle du département recherché
+     */
+    public function updateLoc($id, $codePostal, $libelle, $codeInsee, $depId, $userId) {
+
+        $depToEdit = $this->findOneBy($id);
+        $previousMaj = $depToEdit["dateMaj"];
+
+        $sql = "UPDATE `Localite` SET `codePostal` = :codePostal, `libelle` = :libelle, `codeInsee` = :codeInsee, `idDepartements` = :depId, `idUserMaj` = :idUserMaj, `dateMaj` = CURRENT_TIMESTAMP, `dateMajPrevious` = :previousMaj WHERE `id` = $id";
+        $this->executeRequest($sql, array("codePostal" => $codePostal, "libelle" => $libelle, "codeInsee" => $codeInsee, "depId" => $depId, "idUserMaj" => $userId, "previousMaj" => $previousMaj));
+        return true;
+    }
+
+    /** 
+     * Retourne un département
+     * @param int $id = id du département recherché
+     */
+    public function deleteLoc($id) {
+
+        $sql = "DELETE FROM `Localite` WHERE `id` = :id";
+        $this->executeRequest($sql, ["id" => $id]);
+
+        return true;
+    }
+
 }
