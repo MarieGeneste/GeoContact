@@ -10,15 +10,23 @@ require_once 'Model/Localite.php';
 class ControllerAdmin extends Controller {
 
     private $user;
-    private $department;
-    private $localite;
+    private $departments;
+    private $localites;
     private $webroot;
+    private $adminSession;
 
     public function __construct() {
-        $this->user = new User();
-        $this->department = new Department();
-        $this->localite = new Localite();
+
         $this->webroot = Configuration::get("webroot");
+        $this->adminSession = $_SESSION["adminGeoContact"];
+        $this->user = new User();
+
+        $department = new Department();
+        $this->departments = $department->getDepartments();
+
+        $localite = new Localite();
+        $this->localites = $localite->getLocalites();
+        
     }
 
     // Affiche la page de connexion
@@ -29,31 +37,42 @@ class ControllerAdmin extends Controller {
     }
 
     public function adminDashboard(){
-
-        $adminSession = $_SESSION["adminGeoContact"];
         
-        if ($adminSession == true) {
-
-            $departments = $this->department->getDepartments();
-            $localites = $this->localite->getLocalites();
+        if ($this->adminSession == true) {
             
             $this->generateView([
-                'user' => $adminSession,
-                'departments' => $departments,
-                'localites' => $localites
+                'user' => $this->adminSession,
+                'departments' => $this->departments,
+                'localites' => $this->localites
             ]);
         } else {
             header('Location: ' . $this->webroot . 'Admin');
         }
     }
 
+    public function departmentUpdate(){
+            
+        if ($this->adminSession == true) {
+
+            $this->generateView([
+                'user' => $this->adminSession,
+                'departments' => $this->departments,
+                'localites' => $this->localites
+            ]);
+
+        } else {
+
+            header('Location: ' . $this->webroot . 'Admin');
+        }
+    }
+
     public function adminConnect(){
 
-        $adminSession = $_SESSION["adminGeoContact"];
+        if ($this->adminSession == false) {
 
-        if ($adminSession == false) {
             $email = $_POST["email"];
             $password = $_POST["password"];
+
             $adminAccess = $this->user->checkAdmin($email, $password);
 
             if ($adminAccess != null) {
