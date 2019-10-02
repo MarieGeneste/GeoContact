@@ -200,3 +200,21 @@ nav.admin-navigation .btn  {
 nav.admin-navigation {
     background-color: #6196b0;
 }
+
+/* Page de connexion admin */
+
+#adminlog {
+    background-color: #efefef;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+#adminlog .form-control {
+    color: #000000;
+    background-color: #fff;
+    border: 2px solid #ededed;
+}
+
+#adminlog .btn {
+    background-color: #6196b0;
+}
