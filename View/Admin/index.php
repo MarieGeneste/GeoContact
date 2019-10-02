@@ -1,17 +1,25 @@
 <?php $this->title = "Connexion admin"; ?>
 
 
-<div class="row d-flex flex-wrap align-items-center justify-content-center">
-    <div class="jumbotron col-s-10 d-flex flex-column align-items-center justify-content-center">
-        <h2 class="col-s-12">Connexion</h2>
-        <form class="col-s-12" action="<?= $webroot ?>Admin/adminConnect" method="post">
-        <label>Email</label>
-        <input type="email" name="email" /><br />
-        
-        <label>Mot de passe</label>
-        <input type="password" name="password" /><br /><br />
-        
-        <input type="submit" value="Connexion" />
-        </form>
-    </div>
+<div id="adminlog" class="container">
+    <div class="row">
+        <div class="col">
+            <form action="<?= Configuration::get('webroot') ?>Admin/adminConnect" method="post">
+                <div class="row justify-content-center">
+                    <h2 class="col-s-12">Connexion</h2>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input class="form-control" type="email" name="email" /><br />
+                </div>
+                <div class="form-group">
+                    <label>Mot de passe</label>
+                    <input class="form-control" type="password" name="password" /><br /><br />
+                </div>
+                <div class="row justify-content-center">
+                    <input class="btn btn-primary" type="submit" value="Connexion" />
+                </div>
+            </form>
+        </div>
+    </div>    
 </div>
