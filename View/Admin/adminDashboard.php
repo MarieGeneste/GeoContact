@@ -275,7 +275,7 @@
                             <label for="code">Code INSEE<b>*</b></label>
                             <input type="text" class="form-control" placeholder="Code">
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-8" data-toggle="modal" data-target="#modalDepartements">
                             <label for="libelle">Département <b>*</b></label>
                             <input type="search" class="form-control" placeholder="Département">
                         </div>
@@ -288,6 +288,46 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalDepartements" tabindex="-1" role="dialog" aria-labelledby="modalDepartementsLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalDepartementsLabel">Départements</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="table-wrapper-scroll-y scrollbar">
+            <table class="table table-bordered table-striped mb-0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Code</th>
+                        <th scope="col">Libelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (!empty($departments)) {
+                        foreach ($departments as $department) { ?>
+                    <tr id="<?= $department["id"] ?>" class="department-info">
+                        <th scope="row" class="dep-info-code"><?= $department["code"] ?></th>
+                        <td class="dep-info-libelle"><?= $department["libelle"] ?></td>
+                    </tr>
+                    <?php }
+                    } ?>
+                </tbody>
+            </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary">Sauvegarder</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <style>
