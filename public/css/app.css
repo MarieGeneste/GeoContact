@@ -327,3 +327,28 @@ td{
     padding: unset;
 }
 
+
+
+/* Modal départements */
+#modalDepartements .modal-content {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+#modalDepartements .modal-header {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: var(--blue-light-geocontact);
+    border-bottom: 0;
+}
+
+#modalDepartements .modal-title {
+    color: #fff;
+    display: inline-block;
+    font-size: 1.2rem;
+}
+
+#modalDepartements .modal-body {
+    padding: 0;
+    height: 70vh;
+    overflow-y: scroll;
+}
