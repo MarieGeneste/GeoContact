@@ -171,8 +171,11 @@ nav.admin-navigation .tab .item {
 }
 
 nav.admin-navigation .btn  {
-    padding: 0.5rem;
-    font-size: 0.8rem;
+    font-size: 0.6rem;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    line-height: 4;
 }
 nav.admin-navigation {
     background-color: #6196b0;
