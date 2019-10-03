@@ -46,7 +46,7 @@
                 <tr id="<?= $department["id"] ?>" class="department-info">
                     <th scope="row" class="dep-info-code"><?= $department["code"] ?></th>
                     <td class="dep-info-libelle"><?= $department["libelle"] ?></td>
-                    <td class="text-center"><i class="fa fa-edit dep-edition" style="font-size:26px"></i></td>
+                    <td class="text-center"><i class="fa fa-edit edit-dep-btn" style="font-size:26px"></i></td>
                 </tr>
                 <?php }
                 } ?>
@@ -58,7 +58,7 @@
         <header class="head-list">
             <div class="col-12 p-0 d-flex flex-wrap align-items-center">
                 <h2 class="col-9 m-0">Ajouter un département</h2>
-                <div class="add-listing p-0 col-3"><button class="add-dep-btn">
+                <div class="add-listing p-0 col-3"><button class="close-panel">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="feather feather-plus-circle">
@@ -84,7 +84,7 @@
                     </div>
                     <span class="require-msg">* champs obligatoires</span>
                     <div class="form-group text-right mb-0 mt-3">
-                        <button type="submit" class="btn btn-success submit">Ajouter</button>
+                        <button type="submit" class="btn btn-success submit close-panel">Ajouter</button>
                     </div>
                 </form>
             </div>
@@ -95,8 +95,8 @@
         <header class="head-list">
             <div class="col-12 p-0 d-flex flex-wrap align-items-center">
                 <h2 class="col-9 m-0">Modifier un département</h2>
-                <div id="edit-dep" class="add-listing col-3 p-0">
-                    <button class="edit-dep-btn">
+                <div class="add-listing col-3 p-0">
+                    <button class="close-panel">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="feather feather-plus-circle">
@@ -175,7 +175,7 @@
                     <td><?= $localite["libelle"] ?></td>
                     <th scope="col">01</th>
                     <th scope="col"></th>
-                    <td class="text-center"><i class="fa fa-edit" style="font-size:26px"></i></td>
+                    <td class="text-center"><i class="fa fa-edit edit-loc-btn" style="font-size:26px"></i></td>
                 </tr>
                 <?php }
                 } ?>
@@ -188,7 +188,7 @@
             <div class="col-12 p-0 d-flex flex-wrap align-items-center">
                 <h2 class="col-9 m-0">Editer une localité</h2>
                 <div class="add-listing p-0 col-3">
-                    <button class="edit-loc-btn">
+                    <button class="close-panel">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="feather feather-plus-circle">
@@ -246,7 +246,7 @@
             <div class="col-12 p-0 d-flex flex-wrap align-items-center">
                 <h2 class="col-9 m-0">Ajouter une localité</h2>
                 <div class="add-listing p-0 col-3">
-                    <button class="add-loc-btn">
+                    <button class="close-panel">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="feather feather-plus-circle">
