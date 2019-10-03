@@ -2,6 +2,10 @@
 * Gestion de la mise en page de l'ensemble des pages
 */
 
+.w-100px{
+    width: 100px !important;
+}
+
 /* Varaible couleurs */
 :root {
   --blue-geocontact: rgb(36, 130, 176);

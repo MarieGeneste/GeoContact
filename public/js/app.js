@@ -8,7 +8,6 @@ function OnlyOneVisible(actived)
     let blocks = ['#add-dep','#edit-dep','#add-loc','#edit-loc'];
     for(i=0;i < blocks.length; i++)
     {
-        console.log(blocks[i] + " : " + actived);
 
         if (blocks[i] != actived)
         {

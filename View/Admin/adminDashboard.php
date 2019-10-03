@@ -37,14 +37,14 @@
                 <tr>
                     <th scope="col">Code</th>
                     <th scope="col">Libelle</th>
-                    <th scope="col">Editer</th>
+                    <th class="w-100px" scope="col">Editer</th>
                 </tr>
             </thead>
             <tbody>
                 <?php if (!empty($departments)) {
                     foreach ($departments as $department) { ?>
                         <tr data-departement-id="<?= $department["id"] ?>" class="department-info">
-                            <td scope="row" class="dep-info-code"><?= $department["code"] ?></td>
+                            <td scope="row" class="dep-info-code text-center"><?= $department["code"] ?></td>
                             <td class="dep-info-libelle"><?= $department["libelle"] ?></td>
                             <td class="text-center"><i class="fa fa-edit dep-edition" style="font-size:26px"></i></td>
                         </tr>
@@ -164,7 +164,7 @@
                     <th scope="col">Ville</th>
                     <th scope="col">Departement</th>
                     <th scope="col">Code Insee</th>
-                    <th scope="col">Editer</th>
+                    <th class="w-100px" scope="col">Editer</th>
                 </tr>
             </thead>
             <tbody>
