@@ -2,21 +2,44 @@
 * Gestion des actions diverses / générales sur l'ensemble des pages
 */
 
+//Cache les blocs non utilisé automatiquement.
+function OnlyOneVisible(actived)
+{   
+    let blocks = ['#add-dep','#edit-dep','#add-loc','#edit-loc'];
+    for(i=0;i < blocks.length; i++)
+    {
+        console.log(blocks[i] + " : " + actived);
+
+        if (blocks[i] != actived)
+        {
+            $(blocks[i]).hide();
+        }
+        else
+        {
+            $(blocks[i]).show();
+        };
+    };
+};
+
+$('.close-panel').on('click', function(){
+    $(this).parent().parent().parent().parent().hide();
+});
+
 
 $('.add-dep-btn').on('click', function(){
-    $('#add-dep').toggle();
+    OnlyOneVisible('#add-dep');
 });
 
 $('.edit-dep-btn').on('click', function(){
-    $('#edit-dep').toggle();
+    OnlyOneVisible('#edit-dep');
 });
 
 $('.add-loc-btn').on('click', function(){
-    $('#add-loc').toggle();
+    OnlyOneVisible('#add-loc');
 });
 
 $('.edit-loc-btn').on('click', function(){
-    $('#edit-loc').toggle();
+    OnlyOneVisible('#edit-loc');
 });
 
 $('#cookiesAccepted').click(function(){
@@ -29,7 +52,7 @@ $('#cookiesRefused').click(function(){
     $('#cookies').hide();
 });
 
-// SI cookies existe alors on masque l'encart
+
 $(document).ready(function(){
     CheckCookieDisplayed();
 });
