@@ -227,3 +227,15 @@ nav.admin-navigation {
 #sitemap h1 {
     text-align: center;
 }
+
+/* Mentions Légales */
+
+#legals {
+    background-color: #efefef;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#legals h2 {
+    text-align: center;
+}
