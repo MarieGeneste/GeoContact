@@ -33,7 +33,7 @@
     <script src="<?= Configuration::get("webroot") ?>/public/js/popper.min.js"></script>
     <script src="<?= Configuration::get("webroot") ?>/public/js/bootstrap.min.js"></script>
     <script src="<?= Configuration::get("webroot") ?>/public/js/app.js"></script>
-    <script src="<?= Configuration::get("webroot") ?>/public/js/departmentEdition.js"></script>
+    <script src="<?= Configuration::get("webroot") ?>/public/js/adminUpdate.js"></script>
   </body>
 
 </html>

@@ -124,6 +124,10 @@ footer{
     color: #fff;
     display: inline-block;
 }
+
+.fa-edit{
+    cursor: pointer;
+}
 /* !SECTION */
 
 @media (max-width: 576px) {

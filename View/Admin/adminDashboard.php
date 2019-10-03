@@ -43,12 +43,12 @@
             <tbody>
                 <?php if (!empty($departments)) {
                     foreach ($departments as $department) { ?>
-                <tr id="<?= $department["id"] ?>" class="department-info">
-                    <th scope="row" class="dep-info-code"><?= $department["code"] ?></th>
-                    <td class="dep-info-libelle"><?= $department["libelle"] ?></td>
-                    <td class="text-center"><i class="fa fa-edit edit-dep-btn" style="font-size:26px"></i></td>
-                </tr>
-                <?php }
+                        <tr data-departement-id="<?= $department["id"] ?>" class="department-info">
+                            <td scope="row" class="dep-info-code"><?= $department["code"] ?></td>
+                            <td class="dep-info-libelle"><?= $department["libelle"] ?></td>
+                            <td class="text-center"><i class="fa fa-edit dep-edition" style="font-size:26px"></i></td>
+                        </tr>
+                    <?php }
                 } ?>
             </tbody>
         </table>
@@ -74,11 +74,11 @@
                 <form action="Admin/departmentInsert" method="post">
                     <div class="form-row">
                         <div class="col-md-4">
-                            <label for="code">Code <b>*</b></label>
+                            <label for="dep-new-code">Code <b>*</b></label>
                             <input name="dep-new-code" type="text" class="form-control" placeholder="Code">
                         </div>
                         <div class="col-md-8">
-                            <label for="libelle">Libellé <b>*</b></label>
+                            <label for="dep-new-libelle">Libellé <b>*</b></label>
                             <input name="dep-new-libelle" type="text" class="form-control" placeholder="Libellé">
                         </div>
                     </div>
@@ -112,11 +112,11 @@
                 <form method="post">
                     <div class="form-row">
                         <div class="col-md-4">
-                            <label for="code">Code <b>*</b></label>
+                            <label for="dep-edit-code">Code <b>*</b></label>
                             <input id="dep-edit-code" name="dep-edit-code" type="text" class="form-control" placeholder="Code">
                         </div>
                         <div class="col-md-8">
-                            <label for="libelle">Libellé <b>*</b></label>
+                            <label for="dep-edit-libelle">Libellé <b>*</b></label>
                             <input id="dep-edit-libelle" name="dep-edit-libelle" type="text" class="form-control" placeholder="Libellé">
                         </div>
                         <input id="dep-edit-id" name="dep-edit-id" type="hidden">
@@ -170,14 +170,21 @@
             <tbody>
                 <?php if (!empty($localites)) {
                     foreach ($localites as $localite) { ?>
-                <tr>
-                    <th scope="row"><?= $localite["codePostal"] ?></th>
-                    <td><?= $localite["libelle"] ?></td>
-                    <th scope="col">01</th>
-                    <th scope="col"></th>
-                    <td class="text-center"><i class="fa fa-edit edit-loc-btn" style="font-size:26px"></i></td>
-                </tr>
-                <?php }
+                        <tr data-localite-id="<?= $localite["id"] ?>" class="localite-info">
+                            <td class="loc-info-codePostal text-center" scope="row"><?= $localite["codePostal"] ?></td>
+                            <td class="loc-info-libelle"><?= $localite["libelle"] ?></td>
+                            <td scope="col">
+                                <?php foreach ($departments as $department) { 
+                                    if ($department["id"]."" == $localite["idDepartements"]) {
+                                    
+                                        echo  "<span class='loc-info-depId' data-dep-id='" . $department["id"] . "'>" . $department["libelle"] . "</span>";
+                                    }
+                                } ?>
+                            </td>
+                            <td class="loc-info-codeInsee text-center" scope="col"><?= (!empty($localite["codeInsee"])) ? $localite["codeInsee"]  : "" ; ?></td>
+                            <td class="text-center"><i class="fa fa-edit loc-edition" style="font-size:26px"></i></td>
+                        </tr>
+                    <?php }
                 } ?>
             </tbody>
         </table>
@@ -204,24 +211,26 @@
                 <form>
                     <div class="form-row">
                         <div class="col-md-4">
-                            <label for="code">Code <b>*</b></label>
-                            <input type="text" class="form-control" placeholder="Code">
+                            <label for="loc-edit-codePostal">Code Postal<b>*</b></label>
+                            <input id="loc-edit-codePostal" type="text" class="form-control" placeholder="Code">
                         </div>
                         <div class="col-md-8">
-                            <label for="libelle">Libellé <b>*</b></label>
-                            <input type="text" class="form-control" placeholder="Libellé">
+                            <label for="loc-edit-libelle">Libellé <b>*</b></label>
+                            <input id="loc-edit-libelle" type="text" class="form-control" placeholder="Libellé">
                         </div>
                     </div>
                     <div class="form-row mt-2">
                         <div class="col-md-4">
-                            <label for="code">Code INSEE<b>*</b></label>
-                            <input type="text" class="form-control" placeholder="Code">
+                            <label for="loc-edit-codeInsee">Code Insee</label>
+                            <input id="loc-edit-codeInsee" type="text" class="form-control" placeholder="Code">
                         </div>
-                        <div class="col-md-8">
-                            <label for="libelle">Département <b>*</b></label>
-                            <input type="search" class="form-control" placeholder="Département">
+                        <div id="editLocDep" class="col-md-8" data-toggle="modal" data-target="#modalDepartements">
+                            <label for="loc-edit-department">Département <b>*</b></label>
+                            <input id="loc-edit-department" type="search" disabled="disabled" class="form-control" placeholder="Département">
+                            <input id="loc-edit-dep-id" type="hidden" >
                         </div>
                     </div>
+                    <input id="loc-edit-id" name="dep-edit-id" type="hidden">
                     <span class="require-msg">* champs obligatoires</span>
                     <div class="form-group text-right">
                         <button type="submit" class="btn btn-danger trash">
@@ -262,22 +271,23 @@
                 <form>
                     <div class="form-row">
                         <div class="col-md-4">
-                            <label for="code">Code <b>*</b></label>
-                            <input type="text" class="form-control" placeholder="Code">
+                            <label for="loc-new-codePostal">Code Postal<b>*</b></label>
+                            <input id="loc-new-codePostal" type="text" class="form-control" placeholder="Code">
                         </div>
                         <div class="col-md-8">
-                            <label for="libelle">Libellé <b>*</b></label>
-                            <input type="text" class="form-control" placeholder="Libellé">
+                            <label for="loc-new-libelle">Libellé <b>*</b></label>
+                            <input id="loc-new-libelle" type="text" class="form-control" placeholder="Libellé">
                         </div>
                     </div>
                     <div class="form-row mt-2">
                         <div class="col-md-4">
-                            <label for="code">Code INSEE<b>*</b></label>
-                            <input type="text" class="form-control" placeholder="Code">
+                            <label for="loc-edit-codeInsee">Code Insee</label>
+                            <input id="loc-edit-codeInsee" type="text" class="form-control" placeholder="Code">
                         </div>
-                        <div class="col-md-8" data-toggle="modal" data-target="#modalDepartements">
-                            <label for="libelle">Département <b>*</b></label>
-                            <input type="search" class="form-control" placeholder="Département">
+                        <div id="newLocDep"class="col-md-8" data-toggle="modal" data-target="#modalDepartements">
+                            <label for="loc-new-department">Département <b>*</b></label>
+                            <input id="loc-new-department" type="search" class="form-control" placeholder="Département">
+                            <input id="loc-new-dep-id" type="hidden" >
                         </div>
                     </div>
                     <span class="require-msg">* champs obligatoires</span>
@@ -312,19 +322,19 @@
                 <tbody>
                     <?php if (!empty($departments)) {
                         foreach ($departments as $department) { ?>
-                    <tr id="<?= $department["id"] ?>" class="department-info">
-                        <th scope="row" class="dep-info-code"><?= $department["code"] ?></th>
-                        <td class="dep-info-libelle"><?= $department["libelle"] ?></td>
-                    </tr>
-                    <?php }
+                            <tr class="loc-DepId" id="modal-loc-dep-<?= $department["id"] ?>" class="department-info">
+                                <td class="loc-dep-code" scope="row"><?= $department["code"] ?></td>
+                                <td class="loc-dep-lib" id="<?= $department["id"] ?>"><?= $department["libelle"] ?></td>
+                            </tr>
+                        <?php }
                     } ?>
                 </tbody>
             </table>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        <button type="button" class="btn btn-primary">Sauvegarder</button>
+        <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button> -->
+        <button id="dep-modal-validation" type="button" data-dismiss="modal" class="btn btn-success">Sauvegarder</button>
       </div>
     </div>
   </div>
