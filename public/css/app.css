@@ -423,4 +423,17 @@ footer nav div a{
     margin-bottom: 0.5rem;
     display: block;
 }
+nav.admin-navigation .tab .item{
+    padding-left:unset;
+
+}
+
+nav.admin-navigation .tab{
+    padding-right: unset;
+    margin-right: unset;
+}
+
+.admin-navigation .container .row div{
+    padding-right: unset;
+}
 
