@@ -386,34 +386,41 @@ td{
     bottom: 28px;
     background-color: #343a40;
 }
-=======
-=======
->>>>>>> Size of deconnection button and deleting of <br> in index file
+/* Deconnection button*/
 #adminlog{
     background-color: unset;
 }
 
+.admin-navigation .container .row{
+max-height: unset;
+}
+
 .admin-navigation .container .row div{
     display: flex;
-    align-items: center;
+    align-items: stretch;
+   
+    
 }
 
 nav.admin-navigation .btn{
     width: unset;
     height: unset;
-<<<<<<< master
-}
->>>>>>> Size of deconnection button and deleting of <br> in index file
-=======
-}
->>>>>>> Size of deconnection button and deleting of <br> in index file
-
-.admin-navigation .container .row div{
-    display: flex;
-    align-items: center;
+line-height: unset;
+    
 }
 
-nav.admin-navigation .btn{
-    width: unset;
-    height: unset;
+svg * {
+    color: #fff !important;
 }
+
+footer nav div a{
+    color: #fff !important;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.container.dashboard .panel .require-msg{
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
