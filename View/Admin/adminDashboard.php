@@ -4,12 +4,12 @@
         <div class="row">
             <div class="col-8">
                 <ul class="tab">
-                    <li class="item"><a href="Admin/adminDashboard#section-dep" class="fw-bold text-white">Départements</a></li>
-                    <li class="item"><a href="Admin/adminDashboard#section-loc" class="fw-bold text-white">Localités</a></li>
+                    <li class="item"><a href="<?= Configuration::get('webroot') ?>Admin/adminDashboard#section-dep" class="fw-bold text-white">Départements</a></li>
+                    <li class="item"><a href="<?= Configuration::get('webroot') ?>Admin/adminDashboard#section-loc" class="fw-bold text-white">Localités</a></li>
                 </ul>
             </div>
             <div class="col-4">
-                <a href="Admin/adminDisconnect" class="btn btn-danger">Déconnexion</a>
+                <a href="<?= Configuration::get('webroot') ?>Admin/adminDisconnect" class="btn btn-danger">Déconnexion</a>
             </div>
         </div>
     </div>
