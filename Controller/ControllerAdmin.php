@@ -119,12 +119,12 @@ class ControllerAdmin extends Controller {
 
         if ($this->adminSession == true) {
 
-            $locNewCode = $this->_service->checkInputFields($_POST, "loc-new-code");
+            $locNewCodePostal = $this->_service->checkInputFields($_POST, "loc-new-codePostal");
             $locNewLibelle = $this->_service->checkInputFields($_POST, "loc-new-libelle");
-            $codeInsee = $this->_service->checkInputFields($_POST, "loc-edit-codeInsee");
-            $depId = $this->_service->checkInputFields($_POST, "loc-edit-depId");
+            $locNewCodeInsee = (!empty($this->_service->checkInputFields($_POST, "loc-new-codeInsee"))) ? $this->_service->checkInputFields($_POST, "loc-new-codeInsee") : null ;
+            $locNewDepId = $this->_service->checkInputFields($_POST, "loc-new-dep-id");
 
-            $this->localiteModel->insertLoc($locNewCode, $locNewLibelle, $codeInsee, $depId, $this->adminId);
+            $this->localiteModel->insertLoc($locNewCodePostal, $locNewLibelle, $locNewCodeInsee, $locNewDepId, $this->adminId);
     
             return header('Location: ' . $this->webroot . 'Admin/adminDashboard');
 
@@ -143,12 +143,12 @@ class ControllerAdmin extends Controller {
 
             if (!empty($locToEdit)) {
 
-                $locEditCode = $this->_service->checkInputFields($_POST, "loc-edit-codePostal");
+                $locEditCodePostal = $this->_service->checkInputFields($_POST, "loc-edit-codePostal");
                 $locEditLibelle = $this->_service->checkInputFields($_POST, "loc-edit-libelle");
-                $codeInsee = $this->_service->checkInputFields($_POST, "loc-edit-codeInsee");
-                $depId = $this->_service->checkInputFields($_POST, "loc-edit-depId");
+                $locEditCodeInsee = (!empty($this->_service->checkInputFields($_POST, "loc-edit-codeInsee"))) ? $this->_service->checkInputFields($_POST, "loc-edit-codeInsee") : null ;
+                $locEditDepId = $this->_service->checkInputFields($_POST, "loc-edit-dep-id");
 
-                $this->localiteModel->updateLoc($locEditId, $locEditCode, $locEditLibelle, $codeInsee, $depId, $this->adminId);
+                $this->localiteModel->updateLoc($locEditId, $locEditCodePostal, $locEditLibelle, $locEditCodeInsee, $locEditDepId, $this->adminId);
         
                 return header('Location: ' . $this->webroot . 'Admin/adminDashboard');
             }

@@ -39,15 +39,25 @@ $(".loc-edition").click(function(){
 	$(previoudDepPreselector).closest('.loc-DepId').click()
 	$("#dep-modal-validation").click()
 
-
-	// $("#modalDepartements").find(".loc-DepId").each(function(){
-
-	// 	// modal dep id="modal-loc-dep-<?php $department["id"] ?>"
-	// 	if ($(this).attr("id") == "modal-loc-dep-" + localiteDepId) {
-	// 		$(this).dblclick()
-	// 	}
-	// })
 	$("#edit-loc").slideDown();
+})
+
+$("#loc-new-codePostal").blur(function(){
+	
+	var depByPostalCode = $(this).val().slice(0,-3)
+
+	var depCode = depByPostalCode
+	if (depByPostalCode.length < 2) {
+		depCode = "0" + depByPostalCode
+	} 
+	var depCode = depByPostalCode
+
+	modalOrigin = "new"
+
+	var depSelectorByPostalCode = "#locDepCode-" + depCode
+	$(depSelectorByPostalCode).closest('.loc-DepId').click()
+	$("#dep-modal-validation").click()
+
 })
 
 
@@ -62,6 +72,20 @@ $("#newLocDep").click(function(){
 })
 
 $(".loc-DepId").click(function(){
+	var self = $(this)
+	var depSelectedId = null
+	$(".custom-shadow").removeClass("custom-shadow").promise().done(function(){
+		$(self).addClass("custom-shadow")
+		depSelectedId = "#" + $(self).attr("id")
+	})
+
+	// tentative de focus du département présélectionné
+	// if (depSelectedId != null) {
+	// 	var webroot = $("#adminDashboard").data("webroot")
+	// 	$("#depSelectorFocus").attr("href", webroot + depSelectedId)
+	// 	$("#depSelectorFocus").click()
+	// }
+
 	var selectedDepLib = $(this).find(".loc-dep-lib").html()
 	var selectedDepCode = $(this).find(".loc-dep-code").html()
 	var selectedDepId = $(this).find(".loc-dep-lib").attr("id")
