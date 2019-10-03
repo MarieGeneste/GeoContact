@@ -124,6 +124,15 @@ footer{
     color: #fff;
     display: inline-block;
 }
+
+.fa-edit,
+.loc-DepId{
+    cursor: pointer;
+}
+
+.custom-shadow{
+    box-shadow: 0.5rem 0.5rem 1rem rgba(0,0,0,0.3);
+}
 /* !SECTION */
 
 @media (max-width: 576px) {
