@@ -218,3 +218,15 @@ nav.admin-navigation {
 #adminlog .btn {
     background-color: #6196b0;
 }
+
+/* Plan du site */
+
+#sitemap {
+    background-color: #efefef;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#sitemap h1 {
+    text-align: center;
+}
