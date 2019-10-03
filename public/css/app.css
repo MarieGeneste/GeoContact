@@ -67,29 +67,6 @@ footer{
     border-radius: 10px 10px 0 0;
 }
 
-#cookies {
-  position: fixed;
-  bottom: 30px;
-  left: 15px;
-  width: calc(100vw - 30px);
-  align-items: center;
-  border: 2px solid var(--blue-geocontact);
-  border-radius: 15px; 
-  padding: 10px;
-  height: 20%;
-}
-
-#cookiesChoices {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 100%;
-}
-
-#cookiesChoices button {
-  height: 40%;
-}
-
 
 /* SECTION Admin dashboard */
 
@@ -217,4 +194,21 @@ nav.admin-navigation {
 
 #adminlog .btn {
     background-color: #6196b0;
+}
+
+#cookies {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    margin: 1rem;
+    align-items: center;
+    border: 2px solid var(--blue-geocontact);
+    padding: 10px;
+    border-radius: 5px;
+}
+#cookies .btn {
+    margin: 2px 0;
+    width: 100%;
 }
