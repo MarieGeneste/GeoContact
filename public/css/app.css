@@ -239,3 +239,91 @@ nav.admin-navigation {
 #legals h2 {
     text-align: center;
 }
+
+/* Taille and colors*/
+
+#adminlog .form-control {
+    color: #000000;
+    background-color: rgba(255, 255, 255, 1) !important;
+    border: 2px solid #ededed;
+    font-size: 1.5rem !important;
+    padding: 0.5rem;
+}
+
+input{
+    font-size: 1.5rem !important; 
+    padding: 0.5rem !important;
+    margin-bottom: 1rem;
+}
+.btn{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+label{
+    font-size: 1.5rem;
+    color: #5a5a5a;
+}
+*{
+    font-size: 1rem;
+    color: #333;
+    letter-spacing: 0px;
+    line-height: 1.5rem;
+}
+
+#adminlog .btn-primary{
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+
+}
+
+h1, h2, h3, h4, h5, h6{
+    color: rgb(104, 104, 104);
+}
+
+.form-group{
+    margin-bottom: 2.5rem;
+}
+
+.admin-navigation .col-4{
+    display: flex;
+    justify-items: flex-end;
+    justify-content: flex-end;
+    align-content: stretch;
+    padding-right: 0;
+}
+
+nav.admin-navigation .btn{
+    font-size: 1rem;
+    display: flex;
+    align-content: center;
+    padding: unset;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    align-items: center;
+   
+}
+
+.admin-navigation .tab li{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.table th, .table td{
+    padding: 0.5rem;
+}
+
+th{
+    font-size: 1rem !important;
+    text-align: center;
+}
+td{
+    font-size: 1.2rem !important;
+}
+
+#add-loc .panel .container,
+#add-dep .panel .container{
+    padding: unset;
+}
+
