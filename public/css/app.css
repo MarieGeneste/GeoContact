@@ -327,3 +327,16 @@ td{
     padding: unset;
 }
 
+#adminlog{
+    background-color: unset;
+}
+
+.admin-navigation .container .row div{
+    display: flex;
+    align-items: center;
+}
+
+nav.admin-navigation .btn{
+    width: unset;
+    height: unset;
+}
