@@ -215,3 +215,15 @@ nav.admin-navigation {
     margin: 2px 0;
     width: 100%;
 }
+
+/* Plan du site */
+
+#sitemap {
+    background-color: #efefef;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#sitemap h1 {
+    text-align: center;
+}
