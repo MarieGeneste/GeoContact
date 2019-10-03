@@ -10,11 +10,11 @@
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input class="form-control" type="email" name="email" /><br />
+                    <input class="form-control" type="email" name="email" />
                 </div>
                 <div class="form-group">
                     <label>Mot de passe</label>
-                    <input class="form-control" type="password" name="password" /><br /><br />
+                    <input class="form-control" type="password" name="password" />
                 </div>
                 <div class="row justify-content-center">
                     <input class="btn btn-primary" type="submit" value="Connexion" />

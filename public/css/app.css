@@ -327,6 +327,7 @@ td{
     padding: unset;
 }
 
+<<<<<<< master
 
 
 /* Modal départements */
@@ -383,3 +384,18 @@ td{
     bottom: 28px;
     background-color: #343a40;
 }
+=======
+#adminlog{
+    background-color: unset;
+}
+
+.admin-navigation .container .row div{
+    display: flex;
+    align-items: center;
+}
+
+nav.admin-navigation .btn{
+    width: unset;
+    height: unset;
+}
+>>>>>>> Size of deconnection button and deleting of <br> in index file
