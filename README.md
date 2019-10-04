@@ -37,5 +37,5 @@ __License:__
 
 __Acknowledgments:__  
    * Michel Saffré et François Becette
-   * Corrèze Digital School
+   * [Corrèze Digital School](https://simplon.co/correze-digital-school/)
    * Le restaurant Istambul
