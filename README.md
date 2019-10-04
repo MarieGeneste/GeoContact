@@ -10,12 +10,12 @@ __Prérequis:__
 
 __Installation:__  
 
-   *1 - Télécharger le fichier Zip, l’extraire et le placer dans son serveur
-   *2 - Créer la base de données geoContact
-   *3 - Importer le fichier SQL dans votre base de données ainsi créée
-   *4 - Ouvrir le fichier default_dev.ini  
-            *Entrer vos identifiants de connexion à phpmyadmin pour votre serveur en ligne
-            *Renommer le fichier en dev.ini et l’enregistrer
+   1. Télécharger le fichier Zip, l’extraire et le placer dans son serveur  
+   2. Créer la base de données geoContact  
+   3. Importer le fichier SQL dans votre base de données ainsi créée  
+   4. Ouvrir le fichier default_dev.ini  
+            * Entrer vos identifiants de connexion à phpmyadmin pour votre serveur en ligne  
+            * Renommer le fichier en dev.ini et l’enregistrer  
 
 __Déploiement:__  
    Voir rubrique installation
@@ -36,6 +36,6 @@ __License:__
    En attente des choix du client
 
 __Acknowledgments:__  
-   Michel Saffré et François Becette
-   Corrèze Digital School
-   Le restaurant Istambul
+   * Michel Saffré et François Becette
+   * Corrèze Digital School
+   * Le restaurant Istambul
