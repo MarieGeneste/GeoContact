@@ -16,6 +16,7 @@ function OnlyOneVisible(actived)
         else
         {
             $(blocks[i]).show();
+            $(blocks[i]).attr("tabindex",-1).focus();
         };
     };
 };
