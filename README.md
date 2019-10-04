@@ -14,8 +14,8 @@ __Installation:__
    2. Créer la base de données geoContact  
    3. Importer le fichier SQL dans votre base de données ainsi créée  
    4. Ouvrir le fichier default_dev.ini  
-            * Entrer vos identifiants de connexion à phpmyadmin pour votre serveur en ligne  
-            * Renommer le fichier en dev.ini et l’enregistrer  
+      * Entrer vos identifiants de connexion à phpmyadmin pour votre serveur en ligne  
+      * Renommer le fichier en dev.ini et l’enregistrer  
 
 __Déploiement:__  
    Voir rubrique installation
