@@ -43,7 +43,7 @@
             <tbody>
                 <?php if (!empty($departments)) {
                     foreach ($departments as $department) { ?>
-                        <tr data-departement-id="<?= $department["id"] ?>">
+                        <tr data-departement-id="<?= $department["id"] ?>" class="department-info">
                             <td scope="row" class="dep-info-code text-center"><?= $department["code"] ?></td>
                             <td class="dep-info-libelle"><?= $department["libelle"] ?></td>
                             <td class="text-center"><i class="fa fa-edit edit-dep-btn" style="font-size:26px"></i></td>
