@@ -46,7 +46,7 @@
                         <tr data-departement-id="<?= $department["id"] ?>" class="department-info">
                             <td scope="row" class="dep-info-code text-center"><?= $department["code"] ?></td>
                             <td class="dep-info-libelle"><?= $department["libelle"] ?></td>
-                            <td class="text-center"><i class="fa fa-edit dep-edition" style="font-size:26px"></i></td>
+                            <td class="text-center"><i class="fa fa-edit edit-dep-btn" style="font-size:26px"></i></td>
                         </tr>
                     <?php }
                 } ?>
@@ -182,7 +182,7 @@
                                 } ?>
                             </td>
                             <td class="loc-info-codeInsee text-center" scope="col"><?= (!empty($localite["codeInsee"])) ? $localite["codeInsee"]  : "" ; ?></td>
-                            <td class="text-center"><i class="fa fa-edit loc-edition" style="font-size:26px"></i></td>
+                            <td class="text-center"><i class="fa fa-edit edit-loc-btn" style="font-size:26px"></i></td>
                         </tr>
                     <?php }
                 } ?>

@@ -39,6 +39,8 @@ class ControllerAdmin extends Controller {
     public function index(){
         // $vars = $this->var->getBillets();
         // $this->generateView(array('vars' => $vars));
+        if ($this->adminSession == true) header("Location: admin/admindashboard");
+
         $this->generateView();
     }
 
