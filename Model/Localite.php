@@ -85,10 +85,10 @@ class Localite extends Model {
      * @param int $codePostal = code postal de la localité recherché
      * @param int $libelle = libelle de la localité recherché
      */
-    public function locExist($codePostal, $libelle) {
+    public function locExist($libelle) {
 
-        $sql = "SELECT * FROM " . $this->_prefix . "Localites WHERE `codePostal` = :codePostal OR `libelle` = :libelle" ;
-        $existantLoc = $this->executeRequest($sql, ["codePostal" => $codePostal, "libelle" => $libelle]);
+        $sql = "SELECT * FROM " . $this->_prefix . "Localites WHERE `libelle` = :libelle" ;
+        $existantLoc = $this->executeRequest($sql, ["libelle" => $libelle]);
         $existantLocFound = $existantLoc->fetch();
 
         if(!empty($existantLocFound)){

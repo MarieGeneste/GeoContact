@@ -170,7 +170,7 @@ class ControllerAdmin extends Controller {
             $locNewCodeInsee = (!empty($this->_service->checkInputFields($_POST, "loc-new-codeInsee"))) ? $this->_service->checkInputFields($_POST, "loc-new-codeInsee") : null ;
             $locNewDepId = $this->_service->checkInputFields($_POST, "loc-new-dep-id");
 
-            if($this->localiteModel->locExist($locNewCodePostal, $locNewLibelle) == true){
+            if($this->localiteModel->locExist($locNewLibelle) == true){
                 $message = "Il existe déjà une localité avec ce code postal et ce nom";
                 $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
             } else {
@@ -208,7 +208,7 @@ class ControllerAdmin extends Controller {
                 $locEditCodeInsee = (!empty($this->_service->checkInputFields($_POST, "loc-edit-codeInsee"))) ? $this->_service->checkInputFields($_POST, "loc-edit-codeInsee") : null ;
                 $locEditDepId = $this->_service->checkInputFields($_POST, "loc-edit-dep-id");
 
-                if($this->localiteModel->locExist($locEditCodePostal, $locEditLibelle) == true){
+                if($this->localiteModel->locExist($locEditLibelle) == true){
                     $message = "Il existe déjà une localité avec ce code postal et ce nom";
                     $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
                 } else {
