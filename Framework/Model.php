@@ -11,8 +11,15 @@ require_once 'Configuration.php';
 abstract class Model {
 
     /** PDO Object to access database shared by all Class */
+    protected static $_prefix;
     protected static $db;
     // protected static $result;
+
+    public function __construct() {
+
+        $this->_prefix = (!empty(Configuration::get("prefix"))) ? Configuration::get("prefix") : "" ;
+        
+    }
 
     /**
      * Execute an SQL request
