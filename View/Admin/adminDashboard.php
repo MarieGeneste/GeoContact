@@ -43,7 +43,7 @@
             <tbody>
                 <?php if (!empty($departments)) {
                     foreach ($departments as $department) { ?>
-                        <tr data-departement-id="<?= $department["id"] ?>" class="department-info">
+                        <tr data-departement-id="<?= $department["id"] ?>">
                             <td scope="row" class="dep-info-code text-center"><?= $department["code"] ?></td>
                             <td class="dep-info-libelle"><?= $department["libelle"] ?></td>
                             <td class="text-center"><i class="fa fa-edit edit-dep-btn" style="font-size:26px"></i></td>
@@ -69,7 +69,7 @@
 
             </div>
         </header>
-        <div class="panel">
+        <section class="panel">
             <div class="container">
                 <form action="Admin/departmentInsert" method="post">
                     <div class="form-row">
@@ -88,7 +88,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </section>
     </div>
 
     <div id="edit-dep">
@@ -107,7 +107,7 @@
                 </div>
             </div>
         </header>
-        <div class="panel">
+        <section class="panel">
             <div class="container">
                 <form method="post">
                     <div class="form-row">
@@ -137,7 +137,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </section>
     </div>
 
     <header class="head-list" id="section-loc">
@@ -206,7 +206,7 @@
                 </div>
             </div>
         </header>
-        <div class="panel">
+        <section class="panel">
             <div class="container">
                 <form method="post">
                     <div class="form-row">
@@ -247,7 +247,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </section>
     </div>
 
     <div id="add-loc">
@@ -266,7 +266,7 @@
                 </div>
             </div>
         </header>
-        <div class="panel">
+        <section class="panel">
             <div class="container">
                 <form action="Admin/localiteInsert" method="post">
                     <div class="form-row">
@@ -296,7 +296,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </section>
     </div>
 </div>
 
@@ -310,7 +310,6 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-            <a id="depSelectorFocus" href="" class="hidden">focus</a>
       <div class="modal-body">
         <div class="table-wrapper-scroll-y scrollbar">
             <table class="table table-bordered table-striped mb-0">
@@ -340,8 +339,3 @@
     </div>
   </div>
 </div>
-
-<style>
-
-
-</style>
