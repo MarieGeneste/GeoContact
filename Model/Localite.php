@@ -37,9 +37,11 @@ class Localite extends Model {
     public function insertLoc($codePostal, $libelle, $codeInsee, $depId, $userId) {
 
         $sql = "INSERT INTO `Localites` (codePostal, libelle, codeInsee, idDepartements, idUserMaj, dateMaj) VALUES (:codePostal, :libelle, :codeInsee, :depId, :idUserMaj, CURRENT_TIMESTAMP)";
-        $this->executeRequest($sql, ["codePostal" => $codePostal, "libelle" => $libelle, "codeInsee" => $codeInsee, "depId" => $depId, "idUserMaj" => $userId]);
-
-        return true;
+        if ($this->executeRequest($sql, ["codePostal" => $codePostal, "libelle" => $libelle, "codeInsee" => $codeInsee, "depId" => $depId, "idUserMaj" => $userId])){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /** 
@@ -56,8 +58,11 @@ class Localite extends Model {
         $previousMaj = $depToEdit["dateMaj"];
 
         $sql = "UPDATE `Localites` SET `codePostal` = :codePostal, `libelle` = :libelle, `codeInsee` = :codeInsee, `idDepartements` = :depId, `idUserMaj` = :idUserMaj, `dateMaj` = CURRENT_TIMESTAMP, `dateMajPrevious` = :previousMaj WHERE `id` = $id";
-        $this->executeRequest($sql, array("codePostal" => $codePostal, "libelle" => $libelle, "codeInsee" => $codeInsee, "depId" => $depId, "idUserMaj" => $userId, "previousMaj" => $previousMaj));
-        return true;
+        if ($this->executeRequest($sql, array("codePostal" => $codePostal, "libelle" => $libelle, "codeInsee" => $codeInsee, "depId" => $depId, "idUserMaj" => $userId, "previousMaj" => $previousMaj))){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /** 
@@ -67,9 +72,30 @@ class Localite extends Model {
     public function deleteLoc($id) {
 
         $sql = "DELETE FROM `Localites` WHERE `id` = :id";
-        $this->executeRequest($sql, ["id" => $id]);
+        if ($this->executeRequest($sql, ["id" => $id])){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-        return true;
+    /** 
+     * Return "true" si une localité est trouvé avec ces code ou ce libellé
+     * Sinon return "false
+     * @param int $codePostal = code postal de la localité recherché
+     * @param int $libelle = libelle de la localité recherché
+     */
+    public function locExist($codePostal, $libelle) {
+
+        $sql = "SELECT * FROM `Localites` WHERE `codePostal` = :codePostal OR `libelle` = :libelle" ;
+        $existantLoc = $this->executeRequest($sql, ["codePostal" => $codePostal, "libelle" => $libelle]);
+        $existantLocFound = $existantLoc->fetch();
+        
+        if(!empty($existantLocFound)){
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

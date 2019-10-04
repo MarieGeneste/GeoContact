@@ -16,9 +16,9 @@
 </nav>
 <?php if (!empty($flashMessage)) { 
         if ($flashMessage["status"] == "success") {
-            echo '<div class="alert alert-success alert-dismissible fade show m-4" role="alert">';
+            echo '<div class="alert alert-success alert-dismissible fade show text-center m-4" role="alert">';
         } else {
-            echo '<div class="alert alert-danger alert-dismissible fade show m-4" role="alert">';
+            echo '<div class="alert alert-danger alert-dismissible fade show text-center m-4" role="alert">';
         }
         
         echo $flashMessage["message"]; ?>

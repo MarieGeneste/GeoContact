@@ -35,9 +35,11 @@ class Department extends Model {
     public function insertDep($code, $libelle, $userId) {
 
         $sql = "INSERT INTO `Departements` (code, libelle, idUserMaj, dateMaj) VALUES (:code, :libelle, :idUserMaj, CURRENT_TIMESTAMP)";
-        $this->executeRequest($sql, ["code" => $code, "libelle" => $libelle, "idUserMaj" => $userId]);
-
-        return true;
+        if ($this->executeRequest($sql, ["code" => $code, "libelle" => $libelle, "idUserMaj" => $userId])){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /** 
@@ -52,8 +54,11 @@ class Department extends Model {
         $previousMaj = $depToEdit["dateMaj"];
 
         $sql = "UPDATE `Departements` SET `code` = :code, `libelle` = :libelle, `idUserMaj` = :idUserMaj, `dateMaj` = CURRENT_TIMESTAMP, `dateMajPrevious` = :previousMaj WHERE `id` = $id";
-        $this->executeRequest($sql, array("code" => $code, "libelle" => $libelle, "idUserMaj" => $userId, "previousMaj" => $previousMaj));
-        return true;
+        if ($this->executeRequest($sql, array("code" => $code, "libelle" => $libelle, "idUserMaj" => $userId, "previousMaj" => $previousMaj))){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /** 
@@ -63,9 +68,30 @@ class Department extends Model {
     public function deleteDep($id) {
 
         $sql = "DELETE FROM `Departements` WHERE `id` = :id";
-        $this->executeRequest($sql, ["id" => $id]);
+        if ($this->executeRequest($sql, ["id" => $id])){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-        return true;
+    /** 
+     * Return "true" si un département est trouvé avec ces code ou ce libellé
+     * Sinon return "false
+     * @param int $code = code du département recherché
+     * @param int $libelle = libelle du département recherché
+     */
+    public function depExist($code, $libelle) {
+
+        $sql = "SELECT * FROM `Departements` WHERE `code` = :code OR `libelle` = :libelle" ;
+        $existantDep = $this->executeRequest($sql, ["code" => $code, "libelle" => $libelle]);
+        $existantDepFound = $existantDep->fetch();
+        
+        if(!empty($existantDepFound)){
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
