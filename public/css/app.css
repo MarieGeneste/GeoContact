@@ -26,7 +26,7 @@
 }
 
 .bg-blue-light-geocontact{
-    background-color: var(--blue-light-geocontact);
+    background-color: var(--blue-light-geocontact) !important;
 }
 
 footer{
@@ -137,6 +137,12 @@ footer{
 .custom-shadow{
     box-shadow: 0.5rem 0.5rem 1rem rgba(0,0,0,0.3);
 }
+
+tr.bg-blue-light-geocontact td {
+    color: white;
+}
+
+
 /* !SECTION */
 
 @media (max-width: 576px) {
