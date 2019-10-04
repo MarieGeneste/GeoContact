@@ -43,7 +43,7 @@
             <tbody>
                 <?php if (!empty($departments)) {
                     foreach ($departments as $department) { ?>
-                        <tr data-departement-id="<?= $department["id"] ?>">
+                        <tr data-departement-id="<?= $department["id"] ?>" class="department-info">
                             <td scope="row" class="dep-info-code text-center"><?= $department["code"] ?></td>
                             <td class="dep-info-libelle"><?= $department["libelle"] ?></td>
                             <td class="text-center"><i class="fa fa-edit edit-dep-btn" style="font-size:26px"></i></td>
@@ -95,7 +95,7 @@
         <header class="head-list">
             <div class="col-12 p-0 d-flex flex-wrap align-items-center">
                 <h2 class="col-9 m-0">Modifier un département</h2>
-                <div class="add-listing col-3 p-0">
+                <div id="edit-dep" class="add-listing col-3 p-0">
                     <button class="close-panel">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

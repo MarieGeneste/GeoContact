@@ -17,7 +17,7 @@ $(".add-listing").click(function(){
 // FORMULAIRES DEPARTEMENTS
 
 	// Lors de l'édition d'un département
-	$(".dep-edition").click(function(){
+	$(".edit-dep-btn").click(function(){
 
 		var self = $(this)
 		// Distingue la ligne du tableau des départements en cours d'édition
@@ -62,7 +62,7 @@ $(".add-listing").click(function(){
 	})
 
 	// Lors de l'édition d'une localité
-	$(".loc-edition").click(function(){
+	$(".edit-loc-btn").click(function(){
 
 		var self = $(this)
 		// Distingue la ligne du tableau des localités en cours d'édition
