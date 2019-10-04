@@ -14,6 +14,20 @@
         </div>
     </div>
 </nav>
+<?php if (!empty($flashMessage)) { 
+        if ($flashMessage["status"] == "success") {
+            echo '<div class="alert alert-success alert-dismissible fade show text-center m-4" role="alert">';
+        } else {
+            echo '<div class="alert alert-danger alert-dismissible fade show text-center m-4" role="alert">';
+        }
+        
+        echo $flashMessage["message"]; ?>
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php } ?>
 <div class="container dashboard" id="section-dep">
     <header class="head-list">
         <div class="col-12 p-0 d-flex flex-wrap align-items-center">

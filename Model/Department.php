@@ -9,7 +9,7 @@ class Department extends Model {
      */
     public function getDepartments() {
 
-        $sql = "SELECT * FROM `Departements` ORDER BY `code`";
+        $sql = "SELECT * FROM " . $this->_prefix . "Departements ORDER BY `code`";
         $departments = $this->executeRequest($sql, null);
 
         return $departments->fetchAll();
@@ -21,7 +21,7 @@ class Department extends Model {
      */
     public function findOneBy($id) {
 
-        $sql = "SELECT * FROM `Departements` WHERE `id` = ?";
+        $sql = "SELECT * FROM " . $this->_prefix . "Departements WHERE `id` = ?";
         $department = $this->executeRequest($sql, array($id));
 
         return $department->fetch();
@@ -34,10 +34,12 @@ class Department extends Model {
      */
     public function insertDep($code, $libelle, $userId) {
 
-        $sql = "INSERT INTO `Departements` (code, libelle, idUserMaj, dateMaj) VALUES (:code, :libelle, :idUserMaj, CURRENT_TIMESTAMP)";
-        $this->executeRequest($sql, ["code" => $code, "libelle" => $libelle, "idUserMaj" => $userId]);
-
-        return true;
+        $sql = "INSERT INTO " . $this->_prefix . "Departements (code, libelle, idUserMaj, dateMaj) VALUES (:code, :libelle, :idUserMaj, CURRENT_TIMESTAMP)";
+        if ($this->executeRequest($sql, ["code" => $code, "libelle" => $libelle, "idUserMaj" => $userId])){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /** 
@@ -51,9 +53,12 @@ class Department extends Model {
         $depToEdit = $this->findOneBy($id);
         $previousMaj = $depToEdit["dateMaj"];
 
-        $sql = "UPDATE `Departements` SET `code` = :code, `libelle` = :libelle, `idUserMaj` = :idUserMaj, `dateMaj` = CURRENT_TIMESTAMP, `dateMajPrevious` = :previousMaj WHERE `id` = $id";
-        $this->executeRequest($sql, array("code" => $code, "libelle" => $libelle, "idUserMaj" => $userId, "previousMaj" => $previousMaj));
-        return true;
+        $sql = "UPDATE " . $this->_prefix . "Departements SET `code` = :code, `libelle` = :libelle, `idUserMaj` = :idUserMaj, `dateMaj` = CURRENT_TIMESTAMP, `dateMajPrevious` = :previousMaj WHERE `id` = $id";
+        if ($this->executeRequest($sql, array("code" => $code, "libelle" => $libelle, "idUserMaj" => $userId, "previousMaj" => $previousMaj))){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /** 
@@ -62,10 +67,31 @@ class Department extends Model {
      */
     public function deleteDep($id) {
 
-        $sql = "DELETE FROM `Departements` WHERE `id` = :id";
-        $this->executeRequest($sql, ["id" => $id]);
+        $sql = "DELETE FROM " . $this->_prefix . "Departements WHERE `id` = :id";
+        if ($this->executeRequest($sql, ["id" => $id])){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-        return true;
+    /** 
+     * Return "true" si un département est trouvé avec ces code ou ce libellé
+     * Sinon return "false
+     * @param int $code = code du département recherché
+     * @param int $libelle = libelle du département recherché
+     */
+    public function depExist($code, $libelle) {
+
+        $sql = "SELECT * FROM " . $this->_prefix . "Departements WHERE `code` = :code OR `libelle` = :libelle" ;
+        $existantDep = $this->executeRequest($sql, ["code" => $code, "libelle" => $libelle]);
+        $existantDepFound = $existantDep->fetch();
+
+        if(!empty($existantDepFound)){
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

@@ -47,11 +47,19 @@ class ControllerAdmin extends Controller {
     public function adminDashboard(){
         
         if ($this->adminSession == true) {
+
+            $flashMessage = null;
+            
+            if (!empty($_SESSION["flashMessage"])) {
+                $flashMessage = $_SESSION["flashMessage"];
+                unset($_SESSION["flashMessage"]);
+            } 
             
             $this->generateView([
                 'user' => $this->adminSession,
                 'departments' => $this->departments,
-                'localites' => $this->localites
+                'localites' => $this->localites,
+                'flashMessage' => $flashMessage
             ]);
         } else {
             header('Location: ' . $this->webroot . 'Admin');
@@ -65,7 +73,21 @@ class ControllerAdmin extends Controller {
             $depNewCode = $this->_service->checkInputFields($_POST, "dep-new-code");
             $depNewLibelle = $this->_service->checkInputFields($_POST, "dep-new-libelle");
 
-            $this->departmentModel->insertDep($depNewCode, $depNewLibelle, $this->adminId);
+            if($this->departmentModel->depExist($depNewCode, $depNewLibelle) == true){
+                $message = "Il existe déjà un département avec ce code ou ce nom";
+                $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
+            } else {
+
+                $depInsert = $this->departmentModel->insertDep($depNewCode, $depNewLibelle, $this->adminId);
+
+                if ($depInsert == true) {
+                    $message = "Le département <em class='font-weight-bold'>" . $depNewLibelle . " </em> a bien été ajouté";
+                    $_SESSION["flashMessage"] = ["status" => "success", "message" => $message];
+                } else {
+                    $message = "Le nouveau département n'a pas pu être ajouté";
+                    $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
+                }
+            }
     
             return header('Location: ' . $this->webroot . 'Admin/adminDashboard');
 
@@ -82,14 +104,28 @@ class ControllerAdmin extends Controller {
 
             $depToEdit = $this->departmentModel->findOneBy($depEditId);
 
-            if (!empty($depToEdit)) {
+            $depEditCode = $this->_service->checkInputFields($_POST, "dep-edit-code");
+            $depEditLibelle = $this->_service->checkInputFields($_POST, "dep-edit-libelle");
 
-                $depEditCode = $this->_service->checkInputFields($_POST, "dep-edit-code");
-                $depEditLibelle = $this->_service->checkInputFields($_POST, "dep-edit-libelle");
+            if($this->departmentModel->depExist($depEditCode, $depEditLibelle) == true){
+                $message = "Il existe déjà un département avec ce code ou ce nom";
+                $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
+            } else {
 
-                $this->departmentModel->updateDep($depEditId, $depEditCode, $depEditLibelle, $this->adminId);
-        
-                return header('Location: ' . $this->webroot . 'Admin/adminDashboard');
+                if (!empty($depToEdit)) {
+
+                    $depEdit = $this->departmentModel->updateDep($depEditId, $depEditCode, $depEditLibelle, $this->adminId);
+
+                    if ($depEdit == true) {
+                        $message = "Le département <em class='font-weight-bold'>" . $depEditLibelle . " </em> a bien été modifié";
+                        $_SESSION["flashMessage"] = ["status" => "success", "message" => $message];
+                    } else {
+                        $message = "Le nouveau département n'a pas pu être modifié";
+                        $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
+                    }
+            
+                    return header('Location: ' . $this->webroot . 'Admin/adminDashboard');
+                }
             }
 
         } else {
@@ -107,7 +143,15 @@ class ControllerAdmin extends Controller {
 
             if (!empty($depToEdit)) {
 
-                $this->departmentModel->deleteDep($depEditId);
+                $depDelete = $this->departmentModel->deleteDep($depEditId);
+
+                if ($depDelete == true) {
+                    $message = "Le département <em class='font-weight-bold'>" . $depToEdit["libelle"] . " </em> a bien été supprimé";
+                    $_SESSION["flashMessage"] = ["status" => "success", "message" => $message];
+                } else {
+                    $message = "Le nouveau département n'a pas pu être supprimé";
+                    $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
+                }
         
                 return header('Location: ' . $this->webroot . 'Admin/adminDashboard');
             }
@@ -126,7 +170,21 @@ class ControllerAdmin extends Controller {
             $locNewCodeInsee = (!empty($this->_service->checkInputFields($_POST, "loc-new-codeInsee"))) ? $this->_service->checkInputFields($_POST, "loc-new-codeInsee") : null ;
             $locNewDepId = $this->_service->checkInputFields($_POST, "loc-new-dep-id");
 
-            $this->localiteModel->insertLoc($locNewCodePostal, $locNewLibelle, $locNewCodeInsee, $locNewDepId, $this->adminId);
+            if($this->localiteModel->locExist($locNewLibelle) == true){
+                $message = "Il existe déjà une localité avec ce code postal et ce nom";
+                $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
+            } else {
+
+                $locInsert = $this->localiteModel->insertLoc($locNewCodePostal, $locNewLibelle, $locNewCodeInsee, $locNewDepId, $this->adminId);
+
+                if ($locInsert == true) {
+                    $message = "Le département <em class='font-weight-bold'>" . $locNewLibelle . " </em> a bien été modifié";
+                    $_SESSION["flashMessage"] = ["status" => "success", "message" => $message];
+                } else {
+                    $message = "Le nouveau département n'a pas pu être modifié";
+                    $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
+                }
+            }
     
             return header('Location: ' . $this->webroot . 'Admin/adminDashboard');
 
@@ -150,7 +208,21 @@ class ControllerAdmin extends Controller {
                 $locEditCodeInsee = (!empty($this->_service->checkInputFields($_POST, "loc-edit-codeInsee"))) ? $this->_service->checkInputFields($_POST, "loc-edit-codeInsee") : null ;
                 $locEditDepId = $this->_service->checkInputFields($_POST, "loc-edit-dep-id");
 
-                $this->localiteModel->updateLoc($locEditId, $locEditCodePostal, $locEditLibelle, $locEditCodeInsee, $locEditDepId, $this->adminId);
+                if($this->localiteModel->locExist($locEditLibelle) == true){
+                    $message = "Il existe déjà une localité avec ce code postal et ce nom";
+                    $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
+                } else {
+    
+                    $locUpdate = $this->localiteModel->updateLoc($locEditId, $locEditCodePostal, $locEditLibelle, $locEditCodeInsee, $locEditDepId, $this->adminId);
+
+                    if ($locUpdate == true) {
+                        $message = "Le département <em class='font-weight-bold'>" . $locEditLibelle . " </em> a bien été modifié";
+                        $_SESSION["flashMessage"] = ["status" => "success", "message" => $message];
+                    } else {
+                        $message = "Le nouveau département n'a pas pu être modifié";
+                        $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
+                    }
+                }
         
                 return header('Location: ' . $this->webroot . 'Admin/adminDashboard');
             }
@@ -170,7 +242,16 @@ class ControllerAdmin extends Controller {
 
             if (!empty($locToEdit)) {
 
-                $this->localiteModel->deleteLoc($locEditId);
+                $locDelete = $this->localiteModel->deleteLoc($locEditId);
+
+                if ($locDelete == true) {
+                    $message = "Le département <em class='font-weight-bold'>" . $locToEdit["libelle"] . " </em> a bien été supprimé";
+                    $_SESSION["flashMessage"] = ["status" => "success", "message" => $message];
+                } else {
+                    $message = "Le nouveau département n'a pas pu être supprimé";
+                    $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
+                }
+        
         
                 return header('Location: ' . $this->webroot . 'Admin/adminDashboard');
             }
