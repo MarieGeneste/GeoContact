@@ -9,7 +9,7 @@ class Localite extends Model {
      */
     public function getLocalites() {
 
-        $localites = $this->executeRequest("SELECT * FROM `Localites`");
+        $localites = $this->executeRequest("SELECT * FROM `Localites` ORDER BY `codePostal`");
 
         return $localites->fetchAll();
     }
