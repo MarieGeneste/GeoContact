@@ -377,8 +377,7 @@ td{
 
 /* Modal départements */
 #modalDepartements .modal-content {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-radius: 10px;
     max-height: 80vh;
 }
 #modalDepartements .modal-header {
@@ -404,8 +403,7 @@ td{
     position: sticky;
     bottom: 28px;
     background-color: #343a40;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-radius: 0 0 10px 10px !important;
 }
 /* Deconnection button*/
 #adminlog{
