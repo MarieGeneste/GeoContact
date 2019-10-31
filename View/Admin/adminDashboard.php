@@ -348,7 +348,7 @@
       </div>
       <div class="modal-footer">
         <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button> -->
-        <button id="dep-modal-validation" type="button" data-dismiss="modal" class="btn btn-success">Sauvegarder</button>
+        <button id="dep-modal-validation" type="button" data-dismiss="modal" class="btn btn-success">Sélectionner</button>
       </div>
     </div>
   </div>
