@@ -432,7 +432,8 @@ svg * {
     color: #fff !important;
 }
 
-footer nav div a{
+footer nav div a,
+footer nav div span {
     color: #fff !important;
     text-transform: uppercase;
     font-weight: bold;
