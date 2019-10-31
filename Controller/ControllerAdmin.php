@@ -208,7 +208,7 @@ class ControllerAdmin extends Controller {
                 $locEditCodeInsee = (!empty($this->_service->checkInputFields($_POST, "loc-edit-codeInsee"))) ? $this->_service->checkInputFields($_POST, "loc-edit-codeInsee") : null ;
                 $locEditDepId = $this->_service->checkInputFields($_POST, "loc-edit-dep-id");
 
-                if($this->localiteModel->locExist($locEditLibelle) == true){
+                if($this->localiteModel->locExist($locEditLibelle, $locToEdit['id']) == true){
                     $message = "Il existe déjà une localité avec ce code postal et ce nom";
                     $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
                 } else {
