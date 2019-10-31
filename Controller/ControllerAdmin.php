@@ -107,7 +107,7 @@ class ControllerAdmin extends Controller {
             $depEditCode = $this->_service->checkInputFields($_POST, "dep-edit-code");
             $depEditLibelle = $this->_service->checkInputFields($_POST, "dep-edit-libelle");
 
-            if($this->departmentModel->depExist($depEditCode, $depEditLibelle) == true){
+            if($this->departmentModel->depExist($depEditCode, $depEditLibelle, $depToEdit['id']) == true){
                 $message = "Il existe déjà un département avec ce code ou ce nom";
                 $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
             } else {
@@ -120,7 +120,7 @@ class ControllerAdmin extends Controller {
                         $message = "Le département <em class='font-weight-bold'>" . $depEditLibelle . " </em> a bien été modifié";
                         $_SESSION["flashMessage"] = ["status" => "success", "message" => $message];
                     } else {
-                        $message = "Le nouveau département n'a pas pu être modifié";
+                        $message = "Le département n'a pas pu être modifié";
                         $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
                     }
             
@@ -149,7 +149,7 @@ class ControllerAdmin extends Controller {
                     $message = "Le département <em class='font-weight-bold'>" . $depToEdit["libelle"] . " </em> a bien été supprimé";
                     $_SESSION["flashMessage"] = ["status" => "success", "message" => $message];
                 } else {
-                    $message = "Le nouveau département n'a pas pu être supprimé";
+                    $message = "Le département n'a pas pu être supprimé";
                     $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
                 }
         
@@ -178,10 +178,10 @@ class ControllerAdmin extends Controller {
                 $locInsert = $this->localiteModel->insertLoc($locNewCodePostal, $locNewLibelle, $locNewCodeInsee, $locNewDepId, $this->adminId);
 
                 if ($locInsert == true) {
-                    $message = "Le département <em class='font-weight-bold'>" . $locNewLibelle . " </em> a bien été modifié";
+                    $message = "La localité <em class='font-weight-bold'>" . $locNewLibelle . " </em> a bien été ajouté";
                     $_SESSION["flashMessage"] = ["status" => "success", "message" => $message];
                 } else {
-                    $message = "Le nouveau département n'a pas pu être modifié";
+                    $message = "Le nouvelle localité n'a pas pu être ajoutée";
                     $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
                 }
             }
@@ -216,10 +216,10 @@ class ControllerAdmin extends Controller {
                     $locUpdate = $this->localiteModel->updateLoc($locEditId, $locEditCodePostal, $locEditLibelle, $locEditCodeInsee, $locEditDepId, $this->adminId);
 
                     if ($locUpdate == true) {
-                        $message = "Le département <em class='font-weight-bold'>" . $locEditLibelle . " </em> a bien été modifié";
+                        $message = "La localité <em class='font-weight-bold'>" . $locEditLibelle . " </em> a bien été modifiée";
                         $_SESSION["flashMessage"] = ["status" => "success", "message" => $message];
                     } else {
-                        $message = "Le nouveau département n'a pas pu être modifié";
+                        $message = "La localité n'a pas pu être modifiée";
                         $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
                     }
                 }
@@ -245,10 +245,10 @@ class ControllerAdmin extends Controller {
                 $locDelete = $this->localiteModel->deleteLoc($locEditId);
 
                 if ($locDelete == true) {
-                    $message = "Le département <em class='font-weight-bold'>" . $locToEdit["libelle"] . " </em> a bien été supprimé";
+                    $message = "La localité <em class='font-weight-bold'>" . $locToEdit["libelle"] . " </em> a bien été supprimée";
                     $_SESSION["flashMessage"] = ["status" => "success", "message" => $message];
                 } else {
-                    $message = "Le nouveau département n'a pas pu être supprimé";
+                    $message = "La localité n'a pas pu être supprimée";
                     $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
                 }
         

@@ -81,10 +81,15 @@ class Department extends Model {
      * @param int $code = code du département recherché
      * @param int $libelle = libelle du département recherché
      */
-    public function depExist($code, $libelle) {
+    public function depExist($code, $libelle, $id = null) {
 
-        $sql = "SELECT * FROM " . $this->_prefix . "Departements WHERE `code` = :code OR `libelle` = :libelle" ;
-        $existantDep = $this->executeRequest($sql, ["code" => $code, "libelle" => $libelle]);
+        if ($id != null) {
+            $sql = "SELECT * FROM " . $this->_prefix . "Departements WHERE (`code` = :code OR `libelle` = :libelle) AND `id` != :id" ;
+            $existantDep = $this->executeRequest($sql, ["code" => $code, "libelle" => $libelle, "id" => $id]);
+        } else {
+            $sql = "SELECT * FROM " . $this->_prefix . "Departements WHERE `code` = :code OR `libelle` = :libelle" ;
+            $existantDep = $this->executeRequest($sql, ["code" => $code, "libelle" => $libelle]);
+        }
         $existantDepFound = $existantDep->fetch();
 
         if(!empty($existantDepFound)){
