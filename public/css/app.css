@@ -381,8 +381,8 @@ td{
     max-height: 80vh;
 }
 #modalDepartements .modal-header {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
     background-color: var(--blue-light-geocontact);
     border-bottom: 0;
 }
@@ -403,7 +403,7 @@ td{
     position: sticky;
     bottom: 28px;
     background-color: #343a40;
-    border-radius: 0 0 10px 10px !important;
+    border-radius: 0 0 7px 7px !important;
 }
 /* Deconnection button*/
 #adminlog{
