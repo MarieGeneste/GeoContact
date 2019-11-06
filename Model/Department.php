@@ -9,7 +9,7 @@ class Department extends Model {
      */
     public function getDepartments() {
 
-        $sql = "SELECT * FROM " . $this->_prefix . "Departements ORDER BY `code`";
+        $sql = "SELECT * FROM " . $this->_prefix . "Departements ORDER BY `libelle`";
         $departments = $this->executeRequest($sql, null);
 
         return $departments->fetchAll();
