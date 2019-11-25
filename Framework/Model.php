@@ -17,7 +17,7 @@ abstract class Model {
 
     public function __construct() {
 
-        $this->_prefix = (!empty(Configuration::get("prefix"))) ? Configuration::get("prefix") : "" ;
+        self::$_prefix = (!empty(Configuration::get("prefix"))) ? Configuration::get("prefix") : "" ;
         
     }
 

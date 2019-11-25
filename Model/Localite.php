@@ -9,7 +9,7 @@ class Localite extends Model {
      */
     public function getLocalites() {
 
-        $localites = $this->executeRequest("SELECT * FROM " . $this->_prefix . "Localites ORDER BY `codePostal`");
+        $localites = $this->executeRequest("SELECT * FROM " . self::$_prefix . "Localites ORDER BY `codePostal`");
 
         return $localites->fetchAll();
     }
@@ -20,7 +20,7 @@ class Localite extends Model {
      */
     public function findOneBy($id) {
 
-        $sql = "SELECT * FROM " . $this->_prefix . "Localites WHERE `id` = ?";
+        $sql = "SELECT * FROM " . self::$_prefix . "Localites WHERE `id` = ?";
         $localite = $this->executeRequest($sql, array($id));
 
         return $localite->fetch();
@@ -36,7 +36,7 @@ class Localite extends Model {
      */
     public function insertLoc($codePostal, $libelle, $codeInsee, $depId, $userId) {
 
-        $sql = "INSERT INTO " . $this->_prefix . "Localites (codePostal, libelle, codeInsee, idDepartements, idUserMaj, dateMaj) VALUES (:codePostal, :libelle, :codeInsee, :depId, :idUserMaj, CURRENT_TIMESTAMP)";
+        $sql = "INSERT INTO " . self::$_prefix . "Localites (codePostal, libelle, codeInsee, idDepartements, idUserMaj, dateMaj) VALUES (:codePostal, :libelle, :codeInsee, :depId, :idUserMaj, CURRENT_TIMESTAMP)";
         if ($this->executeRequest($sql, ["codePostal" => $codePostal, "libelle" => $libelle, "codeInsee" => $codeInsee, "depId" => $depId, "idUserMaj" => $userId])){
             return true;
         } else {
@@ -57,7 +57,7 @@ class Localite extends Model {
         $depToEdit = $this->findOneBy($id);
         $previousMaj = $depToEdit["dateMaj"];
 
-        $sql = "UPDATE " . $this->_prefix . "Localites SET `codePostal` = :codePostal, `libelle` = :libelle, `codeInsee` = :codeInsee, `idDepartements` = :depId, `idUserMaj` = :idUserMaj, `dateMaj` = CURRENT_TIMESTAMP, `dateMajPrevious` = :previousMaj WHERE `id` = $id";
+        $sql = "UPDATE " . self::$_prefix . "Localites SET `codePostal` = :codePostal, `libelle` = :libelle, `codeInsee` = :codeInsee, `idDepartements` = :depId, `idUserMaj` = :idUserMaj, `dateMaj` = CURRENT_TIMESTAMP, `dateMajPrevious` = :previousMaj WHERE `id` = $id";
         if ($this->executeRequest($sql, array("codePostal" => $codePostal, "libelle" => $libelle, "codeInsee" => $codeInsee, "depId" => $depId, "idUserMaj" => $userId, "previousMaj" => $previousMaj))){
             return true;
         } else {
@@ -71,7 +71,7 @@ class Localite extends Model {
      */
     public function deleteLoc($id) {
 
-        $sql = "DELETE FROM " . $this->_prefix . "Localites WHERE `id` = :id";
+        $sql = "DELETE FROM " . self::$_prefix . "Localites WHERE `id` = :id";
         if ($this->executeRequest($sql, ["id" => $id])){
             return true;
         } else {
@@ -88,10 +88,10 @@ class Localite extends Model {
     public function locExist($libelle, $id = null) {
 
         if ($id != null) {
-            $sql = "SELECT * FROM " . $this->_prefix . "Localites WHERE `libelle` = :libelle and `id` != :id" ;
+            $sql = "SELECT * FROM " . self::$_prefix . "Localites WHERE `libelle` = :libelle and `id` != :id" ;
             $existantLoc = $this->executeRequest($sql, ["libelle" => $libelle, "id" => $id]);
         } else {
-            $sql = "SELECT * FROM " . $this->_prefix . "Localites WHERE `libelle` = :libelle" ;
+            $sql = "SELECT * FROM " . self::$_prefix . "Localites WHERE `libelle` = :libelle" ;
             $existantLoc = $this->executeRequest($sql, ["libelle" => $libelle]);
         }
         $existantLocFound = $existantLoc->fetch();
