@@ -68,8 +68,8 @@
         </div>
         <!-- Mail -->
         <div class="col-md-4 col-sm-12">
-          <label for="ctc-mail">Mail</label>
-          <input id="ctc-mail" name="ctc-mail" type="email" class="form-control" placeholder="Adresse mail du contact">
+          <label for="ctc-email">Mail</label>
+          <input id="ctc-email" name="ctc-email" type="email" class="form-control" placeholder="Adresse mail du contact">
         </div>
         <!-- Téléphone -->
         <div class="col-md-4 col-sm-12">
