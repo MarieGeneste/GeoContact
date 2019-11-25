@@ -131,6 +131,26 @@ $(".add-listing").click(function(){
 
 	})
 
+	var selectedDepLib = null;
+	var selectedDepCode = null;
+	var selectedDepId = null;
+
+	console.log(modalOrigin);
+	
+
+	// Réinitialise le shadow du département actuellement sélectionné
+	$(".dep-modal-input").click(function(){
+
+		console.log(modalOrigin);
+		
+
+		var activDepId = $("#loc-" + modalOrigin + "-dep-id").val();
+		var selectedDep = "#modal-loc-dep-" + activDepId
+
+		$(selectedDep).click()
+	})
+
+
 	// Fonction permettant la récupération des données liées au département sélectionné dans la modal
 	// Pour les insérer dans le formulaire da la localité 
 	$(".loc-DepId").click(function(){
@@ -154,15 +174,9 @@ $(".add-listing").click(function(){
 		// * }
 
 		// Sélectionne les informations du département nécessaires pour compléter le formulaire ouvert de la localité
-		var selectedDepLib = $(this).find(".loc-dep-lib").html()
-		var selectedDepCode = $(this).find(".loc-dep-code").html()
-		var selectedDepId = $(this).find(".loc-dep-lib").attr("id")
-
-		// Affiche le code et le libellé du département sélectionné dans le formulaire ouvert de la localité
-		$("#loc-" + modalOrigin + "-department").attr("placeholder", selectedDepCode + " - " + selectedDepLib)
-		// Insert l'id du département sélectionné, nécessaire à l'enregistrement du dep de la localité en base de donnée
-		//  dans l'input type="hidden" du formulaire ouvert de la localité
-		$("#loc-" + modalOrigin + "-dep-id").val(selectedDepId)
+		selectedDepLib = $(this).find(".loc-dep-lib").html()
+		selectedDepCode = $(this).find(".loc-dep-code").html()
+		selectedDepId = $(this).find(".loc-dep-lib").attr("id")
 	})
 
 	// Sélectionne le département, valide la sélection et ferme la modal au double click sur un département rattaché à une localité
@@ -173,5 +187,11 @@ $(".add-listing").click(function(){
 
 	// Ferme la modal des departements rattachés à un localité et réi
 	$("#dep-modal-validation").click(function(){
+
+		// Affiche le code et le libellé du département sélectionné dans le formulaire ouvert de la localité
+		$("#loc-" + modalOrigin + "-department").val(selectedDepCode + " - " + selectedDepLib)
+		// Insert l'id du département sélectionné, nécessaire à l'enregistrement du dep de la localité en base de donnée
+		//  dans l'input type="hidden" du formulaire ouvert de la localité
+		$("#loc-" + modalOrigin + "-dep-id").val(selectedDepId)
 		$("#modalDepartements").fadeOut()
 	})
