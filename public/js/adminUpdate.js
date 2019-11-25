@@ -64,6 +64,9 @@ $(".add-listing").click(function(){
 	// Lors de l'édition d'une localité
 	$(".edit-loc-btn").click(function(){
 
+		// Définit et cible le formulaire dans lequel devra être inséré le département
+		modalOrigin = "edit"
+
 		var self = $(this)
 		// Distingue la ligne du tableau des localités en cours d'édition
 		
@@ -92,12 +95,9 @@ $(".add-listing").click(function(){
 		$("#edit-loc").find("#loc-edit-codeInsee").val(localiteCodeInsee)
 		$("#edit-loc").find("#loc-edit-libelle").val(localiteLibelle)
 
-		// Définit et cible le formulaire dans lequel devra être inséré le département
-		modalOrigin = "edit"
-
 		// Sélectionne le département de la localité à éditer dans la modal pour l'insérer dans le formulaire
-		var previoudDepPreselector = "#" + localiteDepId
-		$(previoudDepPreselector).closest('.loc-DepId').click()
+		var previoudDepPreselector = "#modal-loc-dep-" + localiteDepId
+		$(previoudDepPreselector).click()
 		$("#dep-modal-validation").click()
 
 		// Fait apparaitre le formulaire d'édition
@@ -106,12 +106,12 @@ $(".add-listing").click(function(){
 
 	// Fonction de présélectction du département en fonction du code postal
 	// Lors de la sortie de l'input du code postal
-	$("#loc-new-codePostal").blur(function(){
+	function depByPostalCodeSelector(self, modalOrigin){
 		
 		// Récupère le CP entré
 		// Lui retire les 3 derniers chiffres
 		// ex : 19100 -> 19, 1400 -> 1
-		var depByPostalCode = $(this).val().slice(0,-3)
+		var depByPostalCode = $(self).val().slice(0,-3)
 
 		var depCode = depByPostalCode
 
@@ -121,34 +121,31 @@ $(".add-listing").click(function(){
 			depCode = "0" + depByPostalCode
 		}
 
-		// Définit et cible le formulaire dans lequel devra être inséré le département
-		modalOrigin = "new"
-
 		// Sélectionne le département de la nouvelle localité avec le code du département déduit du code postal
 		var depSelectorByPostalCode = "#locDepCode-" + depCode
 		$(depSelectorByPostalCode).closest('.loc-DepId').click()
 		$("#dep-modal-validation").click()
 
+	}
+
+	$("#loc-new-codePostal").blur(function(){
+
+		// Définit et cible le formulaire dans lequel devra être inséré le département
+		modalOrigin = "new"
+		depByPostalCodeSelector(this, modalOrigin)
+	})
+
+	$("#loc-edit-codePostal").blur(function(){
+
+		// Définit et cible le formulaire dans lequel devra être inséré le département
+		modalOrigin = "edit"
+		depByPostalCodeSelector(this, modalOrigin)
 	})
 
 	var selectedDepLib = null;
 	var selectedDepCode = null;
 	var selectedDepId = null;
-
-	console.log(modalOrigin);
 	
-
-	// Réinitialise le shadow du département actuellement sélectionné
-	$(".dep-modal-input").click(function(){
-
-		console.log(modalOrigin);
-		
-
-		var activDepId = $("#loc-" + modalOrigin + "-dep-id").val();
-		var selectedDep = "#modal-loc-dep-" + activDepId
-
-		$(selectedDep).click()
-	})
 
 
 	// Fonction permettant la récupération des données liées au département sélectionné dans la modal
@@ -167,16 +164,36 @@ $(".add-listing").click(function(){
 			// * depSelectedId = "#" + $(self).attr("id")
 		})
 
-		// * if (depSelectedId != null) {
-		// * 	var webroot = $("#adminDashboard").data("webroot")
-		// * 	$("#depSelectorFocus").attr("href", webroot + depSelectedId)
-		// * 	$("#depSelectorFocus").click()
-		// * }
-
 		// Sélectionne les informations du département nécessaires pour compléter le formulaire ouvert de la localité
 		selectedDepLib = $(this).find(".loc-dep-lib").html()
 		selectedDepCode = $(this).find(".loc-dep-code").html()
 		selectedDepId = $(this).find(".loc-dep-lib").attr("id")
+	})
+
+	// Réinitialise le shadow du département actuellement sélectionné
+	function modalDepSelector(modalOrigin){
+
+		var depIdSelector = "#loc-" + modalOrigin + "-dep-id"
+
+		var activDepId = $(depIdSelector).val();
+		var selectedDep = "#modal-loc-dep-" + activDepId
+
+		$(".custom-shadow").removeClass("custom-shadow").promise().done(function(){
+			$(selectedDep).addClass("custom-shadow")
+			// * depSelectedId = "#" + $(self).attr("id")
+		})
+	}
+
+	// Réinitialise le shadow du département actuellement sélectionné
+	$("#loc-new-department").click(function(){
+		modalOrigin = "new"
+		modalDepSelector(modalOrigin)
+	})
+
+	// Réinitialise le shadow du département actuellement sélectionné
+	$("#loc-edit-department").click(function(){
+		modalOrigin = "edit"
+		modalDepSelector(modalOrigin)
 	})
 
 	// Sélectionne le département, valide la sélection et ferme la modal au double click sur un département rattaché à une localité

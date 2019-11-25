@@ -240,7 +240,7 @@
                         </div>
                         <div id="editLocDep" class="col-md-8" data-toggle="modal" data-target="#modalDepartements">
                             <label for="loc-edit-department">Département <b>*</b></label>
-                            <input id="loc-edit-department" type="search" disabled="disabled" class="form-control dep-modal-input" placeholder="Département">
+                            <input id="loc-edit-department" type="search" class="form-control dep-modal-input" placeholder="Département">
                             <input id="loc-edit-dep-id" name="loc-edit-dep-id" type="hidden" >
                         </div>
                     </div>
