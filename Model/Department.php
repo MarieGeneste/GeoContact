@@ -9,7 +9,7 @@ class Department extends Model {
      */
     public function getDepartments() {
 
-        $sql = "SELECT * FROM " . $this->_prefix . "Departements ORDER BY `libelle`";
+        $sql = "SELECT * FROM " . self::$_prefix . "Departements ORDER BY `libelle`";
         $departments = $this->executeRequest($sql, null);
 
         return $departments->fetchAll();
@@ -21,7 +21,7 @@ class Department extends Model {
      */
     public function findOneBy($id) {
 
-        $sql = "SELECT * FROM " . $this->_prefix . "Departements WHERE `id` = ?";
+        $sql = "SELECT * FROM " . self::$_prefix . "Departements WHERE `id` = ?";
         $department = $this->executeRequest($sql, array($id));
 
         return $department->fetch();
@@ -34,7 +34,7 @@ class Department extends Model {
      */
     public function insertDep($code, $libelle, $userId) {
 
-        $sql = "INSERT INTO " . $this->_prefix . "Departements (code, libelle, idUserMaj, dateMaj) VALUES (:code, :libelle, :idUserMaj, CURRENT_TIMESTAMP)";
+        $sql = "INSERT INTO " . self::$_prefix . "Departements (code, libelle, idUserMaj, dateMaj) VALUES (:code, :libelle, :idUserMaj, CURRENT_TIMESTAMP)";
         if ($this->executeRequest($sql, ["code" => $code, "libelle" => $libelle, "idUserMaj" => $userId])){
             return true;
         } else {
@@ -53,7 +53,7 @@ class Department extends Model {
         $depToEdit = $this->findOneBy($id);
         $previousMaj = $depToEdit["dateMaj"];
 
-        $sql = "UPDATE " . $this->_prefix . "Departements SET `code` = :code, `libelle` = :libelle, `idUserMaj` = :idUserMaj, `dateMaj` = CURRENT_TIMESTAMP, `dateMajPrevious` = :previousMaj WHERE `id` = $id";
+        $sql = "UPDATE " . self::$_prefix . "Departements SET `code` = :code, `libelle` = :libelle, `idUserMaj` = :idUserMaj, `dateMaj` = CURRENT_TIMESTAMP, `dateMajPrevious` = :previousMaj WHERE `id` = $id";
         if ($this->executeRequest($sql, array("code" => $code, "libelle" => $libelle, "idUserMaj" => $userId, "previousMaj" => $previousMaj))){
             return true;
         } else {
@@ -67,7 +67,7 @@ class Department extends Model {
      */
     public function deleteDep($id) {
 
-        $sql = "DELETE FROM " . $this->_prefix . "Departements WHERE `id` = :id";
+        $sql = "DELETE FROM " . self::$_prefix . "Departements WHERE `id` = :id";
         if ($this->executeRequest($sql, ["id" => $id])){
             return true;
         } else {
@@ -84,10 +84,10 @@ class Department extends Model {
     public function depExist($code, $libelle, $id = null) {
 
         if ($id != null) {
-            $sql = "SELECT * FROM " . $this->_prefix . "Departements WHERE (`code` = :code OR `libelle` = :libelle) AND `id` != :id" ;
+            $sql = "SELECT * FROM " . self::$_prefix . "Departements WHERE (`code` = :code OR `libelle` = :libelle) AND `id` != :id" ;
             $existantDep = $this->executeRequest($sql, ["code" => $code, "libelle" => $libelle, "id" => $id]);
         } else {
-            $sql = "SELECT * FROM " . $this->_prefix . "Departements WHERE `code` = :code OR `libelle` = :libelle" ;
+            $sql = "SELECT * FROM " . self::$_prefix . "Departements WHERE `code` = :code OR `libelle` = :libelle" ;
             $existantDep = $this->executeRequest($sql, ["code" => $code, "libelle" => $libelle]);
         }
         $existantDepFound = $existantDep->fetch();
