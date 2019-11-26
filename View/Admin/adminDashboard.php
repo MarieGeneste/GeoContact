@@ -1,4 +1,4 @@
-<?php $this->title = "Dashboard admin"; ?>
+<?php $this->title = "Tableau de bord administrateur"; ?>
 <nav class="admin-navigation" id="adminDashboard" data-webroot="<?= Configuration::get('webroot') ?>Admin/adminDashboard">
     <div class="container">
         <div class="row">
@@ -89,11 +89,11 @@
                     <div class="form-row">
                         <div class="col-md-4">
                             <label for="dep-new-code">Code <b>*</b></label>
-                            <input name="dep-new-code" type="text" class="form-control" placeholder="Code">
+                            <input name="dep-new-code" type="text" class="form-control" placeholder="Code" pattern=".{5,5}" required>
                         </div>
                         <div class="col-md-8">
                             <label for="dep-new-libelle">Libellé <b>*</b></label>
-                            <input name="dep-new-libelle" type="text" class="form-control" placeholder="Libellé">
+                            <input name="dep-new-libelle" type="text" class="form-control" placeholder="Libellé" required>
                         </div>
                     </div>
                     <span class="require-msg">* champs obligatoires</span>
@@ -127,11 +127,11 @@
                     <div class="form-row">
                         <div class="col-md-4">
                             <label for="dep-edit-code">Code <b>*</b></label>
-                            <input id="dep-edit-code" name="dep-edit-code" type="text" class="form-control" placeholder="Code">
+                            <input id="dep-edit-code" name="dep-edit-code" type="text" class="form-control" placeholder="Code"  pattern=".{2,3}" required>
                         </div>
                         <div class="col-md-8">
                             <label for="dep-edit-libelle">Libellé <b>*</b></label>
-                            <input id="dep-edit-libelle" name="dep-edit-libelle" type="text" class="form-control" placeholder="Libellé">
+                            <input id="dep-edit-libelle" name="dep-edit-libelle" type="text" class="form-control" placeholder="Libellé" required>
                         </div>
                         <input id="dep-edit-id" name="dep-edit-id" type="hidden">
                     </div>
@@ -184,6 +184,11 @@
             <tbody>
                 <?php if (!empty($localites)) {
                     foreach ($localites as $localite) { ?>
+                    <!-- Ajoute un zéro devant le code postal s'il ne comporte que quatre caractères -->
+                    <?php 
+                        if(strlen($localite["codePostal"]) < 5)
+                        $localite["codePostal"] = sprintf("%05d", $localite["codePostal"]);
+                    ?>
                         <tr data-localite-id="<?= $localite["id"] ?>" class="localite-info">
                             <td class="loc-info-codePostal text-center" scope="row"><?= $localite["codePostal"] ?></td>
                             <td class="loc-info-libelle"><?= $localite["libelle"] ?></td>
@@ -226,21 +231,21 @@
                     <div class="form-row">
                         <div class="col-md-4">
                             <label for="loc-edit-codePostal">Code Postal<b>*</b></label>
-                            <input id="loc-edit-codePostal" name="loc-edit-codePostal" type="text" class="form-control" placeholder="Code Postal">
+                            <input id="loc-edit-codePostal" name="loc-edit-codePostal" type="number" class="form-control" placeholder="Code Postal" pattern=".{5,5}" required>
                         </div>
                         <div class="col-md-8">
                             <label for="loc-edit-libelle">Libellé <b>*</b></label>
-                            <input id="loc-edit-libelle" name="loc-edit-libelle" type="text" class="form-control" placeholder="Libellé">
+                            <input id="loc-edit-libelle" name="loc-edit-libelle" type="text" class="form-control" placeholder="Libellé" required>
                         </div>
                     </div>
                     <div class="form-row mt-2">
                         <div class="col-md-4">
                             <label for="loc-edit-codeInsee">Code Insee</label>
-                            <input id="loc-edit-codeInsee" name="loc-edit-codeInsee" type="text" class="form-control" placeholder="Code Insee">
+                            <input id="loc-edit-codeInsee" name="loc-edit-codeInsee" type="number" class="form-control" placeholder="Code Insee" pattern=".{5,5}">
                         </div>
                         <div id="editLocDep" class="col-md-8" data-toggle="modal" data-target="#modalDepartements">
                             <label for="loc-edit-department">Département <b>*</b></label>
-                            <input id="loc-edit-department" type="search" class="form-control dep-modal-input" placeholder="Département">
+                            <input id="loc-edit-department" type="search" class="form-control dep-modal-input" placeholder="Département" required>
                             <input id="loc-edit-dep-id" name="loc-edit-dep-id" type="hidden" >
                         </div>
                     </div>
@@ -286,22 +291,22 @@
                     <div class="form-row">
                         <div class="col-md-4">
                             <label for="loc-new-codePostal">Code Postal<b>*</b></label>
-                            <input id="loc-new-codePostal" name="loc-new-codePostal" type="text" class="form-control" placeholder="Code Postal">
+                            <input id="loc-new-codePostal" name="loc-new-codePostal" type="number" class="form-control" placeholder="Code Postal" pattern=".{5,5}" required>
                         </div>
                         <div class="col-md-8">
                             <label for="loc-new-libelle">Libellé <b>*</b></label>
-                            <input id="loc-new-libelle" name="loc-new-libelle" type="text" class="form-control" placeholder="Libellé">
+                            <input id="loc-new-libelle" name="loc-new-libelle" type="text" class="form-control" placeholder="Libellé" required>
                         </div>
                     </div>
                     <div class="form-row mt-2">
                         <div class="col-md-4">
                             <label for="loc-new-codeInsee">Code Insee</label>
-                            <input id="loc-new-codeInsee" name="loc-new-codeInsee" type="text" class="form-control" placeholder="Code Insee">
+                            <input id="loc-new-codeInsee" name="loc-new-codeInsee" type="number" class="form-control" placeholder="Code Insee" pattern=".{5,5}">
                         </div>
                         <div id="newLocDep"class="col-md-8" data-toggle="modal" data-target="#modalDepartements">
                             <label for="loc-new-department">Département <b>*</b></label>
-                            <input id="loc-new-department" type="search" class="form-control dep-modal-input" placeholder="Département">
-                            <input id="loc-new-dep-id" name="loc-new-dep-id" type="hidden" >
+                            <input id="loc-new-department" type="search" class="form-control dep-modal-input" placeholder="Département" required >
+                            <input id="loc-new-dep-id" name="loc-new-dep-id" type="hidden">
                         </div>
                     </div>
                     <span class="require-msg">* champs obligatoires</span>
