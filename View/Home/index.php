@@ -1,7 +1,6 @@
 <!-- Title -->
 <?php $this->title = "GéoContact"; ?>
 
-
 <div class="container-fluid row m-0 p-0 pt-4 pb-4">
     <div class="col col-12 d-flex flex-column p-0 pt-4 pb-4">
         <?php foreach($articles as $homeArticle) { ?>
