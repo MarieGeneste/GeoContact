@@ -7,22 +7,29 @@ class User extends Model {
     /** 
      * Ici, ajouter les fonctions de récupération de données voulue
      */
-    /* Vérifie les informations de connection de l'administrateur */
-    public function checkAdmin($email, $password) {
-        $sql = "SELECT * FROM " . self::$_prefix . "Users WHERE `email` = :email AND `password` = :pwd AND `idRoles` = 1 ";
+    public function check($email, $password, $idrole) {
+        $sql = "SELECT * FROM " . self::$_prefix . "Users WHERE `email` = :email AND `password` = :pwd AND `idRoles` = :idrole ";
                 
-        $adminSession = $this->executeRequest($sql, array(":email" => $email, ":pwd" => $password));
+        $logSession = $this->executeRequest($sql, array(":email" => $email, ":pwd" => $password, ":idrole" => $idrole));
         
-        return $adminSession->fetch();
+        return $logSession->fetch();
     }
 
-    /* Vérifie les informations de connection de l'utilisateur */
-    public function checkUser($email, $password) {
-        $sql = "SELECT * FROM " . self::$_prefix . "Users WHERE `email` = :email AND `password` = :pwd AND `idRoles` = 2 ";
-                
-        $adminSession = $this->executeRequest($sql, array(":email" => $email, ":pwd" => $password));
-        
-        return $adminSession->fetch();
+    public function getUsers() {
+
+        $sql = "SELECT * FROM " . self::$_prefix . "Users ORDER BY `nom`";
+        $users = $this->executeRequest($sql, null);
+
+        return $users->fetchAll();
     }
 
+    public function insertUser($email, $lastname, $firstname, $password, $idrole) {
+
+        $sql = "INSERT INTO Users (email, nom, prenom, password, idRoles) VALUES (:email, :nom, :prenom, :password, :idRoles)";
+            if ($this->executeRequest($sql, ["email" => $email, "nom" => $lastname, "prenom" => $firstname, "password" => $password, "idRoles" => $idrole])){
+                return true;
+            } else {
+                return false;
+            }
+    }
 }
