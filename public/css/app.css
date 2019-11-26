@@ -165,23 +165,26 @@ tr.bg-blue-light-geocontact td {
     display: none;
 }
 
-nav.admin-navigation {
+nav.admin-navigation,
+nav.user-navigation {
     width: 100%;
     position: relative;
-    background-color: #ededed;
     position: sticky;
     top: 0;
     z-index: 10;
+    background-color: #6196b0;
 }
 
-nav.admin-navigation .tab {
+nav.admin-navigation .tab,
+nav.user-navigation .tab {
     list-style-type: none;
     padding: 0;
     margin: 0;
     display: inline-block;
 }
 
-nav.admin-navigation .tab .item {
+nav.admin-navigation .tab .item,
+nav.user-navigation .tab .item {
     padding: 0.5rem;
     vertical-align: text-top;
     display: inline-block;
@@ -189,15 +192,13 @@ nav.admin-navigation .tab .item {
     color: #fff;
 }
 
-nav.admin-navigation .btn  {
+nav.admin-navigation .btn,
+nav.user-navigation .btn  {
     font-size: 0.6rem;
     padding: 0;
     height: 100%;
     width: 100%;
     line-height: 4;
-}
-nav.admin-navigation {
-    background-color: #6196b0;
 }
 
 /* Page de connexion admin */
