@@ -14,7 +14,7 @@ class ControllerAdmin extends Controller {
     private $departments;
     private $localites;
     private $webroot;
-    private $adminSession;
+    private $logSession;
     private $adminId;
     private $_service;
 
@@ -23,7 +23,7 @@ class ControllerAdmin extends Controller {
         $this->webroot = Configuration::get("webroot");
         $this->_service = new Security();
 
-        $this->adminSession = !empty($_SESSION["adminGeoContact"]) ? $_SESSION["adminGeoContact"] : false;
+        $this->logSession = !empty($_SESSION["adminGeoContact"]) ? $_SESSION["adminGeoContact"] : false;
         $this->adminId = !empty($_SESSION["adminId"]) ? $_SESSION["adminId"] : false;
         $this->user = new User();
 
@@ -39,14 +39,14 @@ class ControllerAdmin extends Controller {
     public function index(){
         // $vars = $this->var->getBillets();
         // $this->generateView(array('vars' => $vars));
-        if ($this->adminSession == true) header("Location: Admin/adminDashboard");
+        if ($this->logSession == true) header("Location: Admin/adminDashboard");
 
         $this->generateView();
     }
 
     public function adminDashboard(){
         
-        if ($this->adminSession == true) {
+        if ($this->logSession == true) {
 
             $flashMessage = null;
             
@@ -56,7 +56,7 @@ class ControllerAdmin extends Controller {
             } 
             
             $this->generateView([
-                'user' => $this->adminSession,
+                'user' => $this->logSession,
                 'departments' => $this->departments,
                 'localites' => $this->localites,
                 'flashMessage' => $flashMessage
@@ -68,7 +68,7 @@ class ControllerAdmin extends Controller {
 
     public function departmentInsert(){
 
-        if ($this->adminSession == true) {
+        if ($this->logSession == true) {
 
             $depNewCode = $this->_service->checkInputFields($_POST, "dep-new-code");
             $depNewLibelle = $this->_service->checkInputFields($_POST, "dep-new-libelle");
@@ -98,7 +98,7 @@ class ControllerAdmin extends Controller {
 
     public function departmentUpdate(){
 
-        if ($this->adminSession == true) {
+        if ($this->logSession == true) {
 
             $depEditId = $this->_service->checkInputFields($_POST, "dep-edit-id");
 
@@ -135,7 +135,7 @@ class ControllerAdmin extends Controller {
 
     public function departmentDelete(){
 
-        if ($this->adminSession == true) {
+        if ($this->logSession == true) {
 
             $depEditId = $this->_service->checkInputFields($_POST, "dep-edit-id");
 
@@ -163,7 +163,7 @@ class ControllerAdmin extends Controller {
 
     public function localiteInsert(){
 
-        if ($this->adminSession == true) {
+        if ($this->logSession == true) {
 
             $locNewCodePostal = $this->_service->checkInputFields($_POST, "loc-new-codePostal");
             $locNewLibelle = $this->_service->checkInputFields($_POST, "loc-new-libelle");
@@ -195,7 +195,7 @@ class ControllerAdmin extends Controller {
 
     public function localiteUpdate(){
 
-        if ($this->adminSession == true) {
+        if ($this->logSession == true) {
 
             $locEditId = $this->_service->checkInputFields($_POST, "loc-edit-id");
 
@@ -234,7 +234,7 @@ class ControllerAdmin extends Controller {
 
     public function localiteDelete(){
 
-        if ($this->adminSession == true) {
+        if ($this->logSession == true) {
 
             $locEditId = $this->_service->checkInputFields($_POST, "loc-edit-id");
 
@@ -263,19 +263,20 @@ class ControllerAdmin extends Controller {
 
     public function adminConnect(){
 
-        if ($this->adminSession == false) {
+        if ($this->logSession == false) {
 
             $email = $this->_service->checkInputFields($_POST, "email");
             $password = $this->_service->checkInputFields($_POST, "password");
+            $idrole = 1;
 
-            $adminAccess = $this->user->checkAdmin($email, $password);
+            $adminAccess = $this->user->check($email, $password, $idrole);
 
             if ($adminAccess != null) {
 
                 $_SESSION["adminGeoContact"] = true;
                 $_SESSION["adminId"] = $adminAccess["id"];
 
-                $this->adminSession = $_SESSION["adminGeoContact"];
+                $this->logSession = $_SESSION["adminGeoContact"];
                 $this->adminId = $_SESSION["adminId"];
                 
                 header('Location: ' . $this->webroot . 'Admin/adminDashboard');
