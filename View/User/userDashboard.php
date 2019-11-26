@@ -14,6 +14,7 @@
                 </button>
             </div>
         </div>
+        <a href="<?= Configuration::get('webroot') ?>User/userDisconnect" class="btn btn-danger">Déconnexion</a>
     </header>
     <div class="table-wrapper-scroll-y scrollbar">
         <table class="table table-bordered table-striped mb-0">
