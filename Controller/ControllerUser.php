@@ -4,6 +4,7 @@ require_once 'Framework/Controller.php';
 require_once 'Model/User.php';
 require_once 'Model/Contact.php';
 require_once 'Model/TypesVoie.php';
+require_once 'Model/Localite.php';
 require_once 'Service/Security.php';
 
 class ControllerUser extends Controller {
@@ -17,6 +18,8 @@ class ControllerUser extends Controller {
     private $contacts;
     private $typesVoieModel;
     private $typesVoies;
+    private $localiteModel;
+    private $localites;
     private $_service;
     private $webroot;
     private $logSession;
@@ -28,7 +31,9 @@ class ControllerUser extends Controller {
         $this->_service = new Security();
 
         $this->contactModel = new Contact();
-        $this->contacts = $this->contactModel->getContacts(2); // 2 est un userId factice pour le dev, à remplacer par la variable $userId
+        if(isset($_SESSION["userId"])) {
+            $this->contacts = $this->contactModel->getContacts($_SESSION["userId"]);
+        }
         
         $this->typesVoieModel = new TypesVoie();
         $this->typesVoies = $this->typesVoieModel->getTypesVoies();
@@ -39,13 +44,22 @@ class ControllerUser extends Controller {
 
         $this->userModel = new User();
         $this->users = $this->userModel->getUsers();
+
+        $this->localiteModel = new Localite();
+        $this->localites = $this->localiteModel->getLocalites();
         
     }
 
+    /**
+     * Gestion de l'affichage d'inscription des nouveaux utilisateurs
+     */
     public function new(){
         $this->generateView();
     }
 
+    /**
+     * Gestion de l'affichage des contacts d'un utilisateur
+     */
     public function userDashboard(){
         // Si une session utilisateur existe 
         if ($this->logSession == true) {
@@ -61,6 +75,7 @@ class ControllerUser extends Controller {
             $this->generateView([
                 'user' => $this->logSession,
                 'typesVoies' => $this->typesVoies,
+                'localites' => $this->localites,
                 'contacts' => $this->contacts,
                 'flashMessage' => $flashMessage
             ]);
@@ -70,6 +85,9 @@ class ControllerUser extends Controller {
         }
     }
 
+    /**
+     * Gestion de l'inscription de nouveaux utilisateurs
+     */
     public function userInsert()
     {
         if($this->logSession == false) {
@@ -111,21 +129,24 @@ class ControllerUser extends Controller {
                 $_SESSION["flashMessage"] = ["status" => "errors", "message" => $message];
                 return header('Location: ' . $this->webroot . 'User/new');
             }
-
-            // return header('Location: ' . $this->webroot . 'User/userDashboard');
         }
         else {
             return header('Location: ' . $this->webroot . 'User');
         }
     }
 
+    /**
+     * Gestion de l'affichage du tableau de bord utilisateur
+     */
     public function index(){
 
         if ($this->logSession == true) header("Location: User/userDashboard");
         $this->generateView();
     }
 
-    /* Connection de l'utilisateur */
+    /** 
+     * Connection de l'utilisateur
+     */
     public function userConnect(){
 
         if ($this->logSession == false) {
@@ -137,7 +158,6 @@ class ControllerUser extends Controller {
             $userAccess = $this->user->check($email, sha1($password), $idrole);
 
             if ($userAccess != null) {
-
                 $_SESSION["userGeoContact"] = true;
                 $_SESSION["userId"] = $userAccess["id"];
 
@@ -149,9 +169,10 @@ class ControllerUser extends Controller {
         }
     }
 
-    /* Déconnection de l'utilisateur */
+    /**
+     * Déconnection de l'utilisateur
+     */ 
     public function userDisconnect(){
-
         // destroy the session
         $_SESSION["userGeoContact"] = false;
         session_destroy();
@@ -160,104 +181,77 @@ class ControllerUser extends Controller {
     }
 
 
-    /* Ajout d'un contact */
+    /**
+     * Gestion de l'ajout d'un contact
+     */
     public function contactInsert(){
-        if ($this->userSession == true) {
-            $ctcNewOrganisme = $this->_service->checkInputFields($_POST, "ctc-organisme");
-            $ctcNewNom = $this->_service->checkInputFields($_POST, "ctc-nom");
-            $ctcNewPrenom = $this->_service->checkInputFields($_POST, "ctc-prenom");
-            $ctcNewAdrNum = $this->_service->checkInputFields($_POST, "ctc-adr-num");
-            $ctcNewAdrBis = $this->_service->checkInputFields($_POST, "ctc-adr-bis");
-            $ctcNewAdrType = $this->_service->checkInputFields($_POST, "ctc-adr-type");
-            $ctcNewAdrVoie = $this->_service->checkInputFields($_POST, "ctc-adr-voie");
-            $ctcNewAdrLoc = $this->_service->checkInputFields($_POST, "ctc-adr-loc");
-            $ctcNewAdrCompl = $this->_service->checkInputFields($_POST, "ctc-adr-compl");
-            $ctcNewEmail = $this->_service->checkInputFields($_POST, "ctc-email");
-            $ctcNewTel = $this->_service->checkInputFields($_POST, "ctc-tel");
-            $ctcNewSite = $this->_service->checkInputFields($_POST, "ctc-site");
-            $ctcNewNote = $this->_service->checkInputFields($_POST, "ctc-note");
+        if ($this->logSession == true) {
+            $organisme = $this->_service->checkInputFields($_POST, "ctc-organisme");
+            $nom = $this->_service->checkInputFields($_POST, "ctc-nom");
+            $prenom = $this->_service->checkInputFields($_POST, "ctc-prenom");
+            $adrNum = $this->_service->checkInputFields($_POST, "ctc-adr-num");
+            $adrBis = $this->_service->checkInputFields($_POST, "ctc-adr-bis");
+            $adrIdTypesVoie = $this->_service->checkInputFields($_POST, "ctc-adr-type");
+            $adrVoie = $this->_service->checkInputFields($_POST, "ctc-adr-voie");
+            $adrIdLocalites = $this->_service->checkInputFields($_POST, "ctc-adr-loc");
+            $adrCompl = $this->_service->checkInputFields($_POST, "ctc-adr-compl");
+            $email = $this->_service->checkInputFields($_POST, "ctc-email");
+            $tel = $this->_service->checkInputFields($_POST, "ctc-tel");
+            $site = $this->_service->checkInputFields($_POST, "ctc-site");
+            $note = $this->_service->checkInputFields($_POST, "ctc-note");
 
-            //
-            if($this->departmentModel->depExist($depNewCode, $depNewLibelle) == true){
-                $message = "Il existe déjà un département avec ce code ou ce nom";
-                $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
-            } else {
-                $depInsert = $this->departmentModel->insertDep($depNewCode, $depNewLibelle, $this->adminId);
-
-                if ($depInsert == true) {
-                    $message = "Le département <em class='font-weight-bold'>" . $depNewLibelle . " </em> a bien été ajouté";
-                    $_SESSION["flashMessage"] = ["status" => "success", "message" => $message];
-                } else {
-                    $message = "Le nouveau département n'a pas pu être ajouté";
-                    $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
-                }
-            }
+            $userId = $_SESSION["userId"];
+            
+            // Insertion du contact
+            $contactInsert = $this->contactModel->insertContact($organisme, $nom, $prenom, $adrNum, $adrBis, $adrIdTypesVoie, $adrVoie, $adrIdLocalites, $adrCompl, $email, $tel, $site, $note, $userId);
     
-            return header('Location: ' . $this->webroot . 'Admin/adminDashboard');
-
+            return header('Location: ' . $this->webroot . 'User/userDashboard');
         } else {
-            return header('Location: ' . $this->webroot . 'Admin');
+            return header('Location: ' . $this->webroot . 'User');
         }
     }
 
-    // public function departmentUpdate(){
-    //     if ($this->adminSession == true) {
-    //         $depEditId = $this->_service->checkInputFields($_POST, "dep-edit-id");
+    /**
+     * Gestion de la mise à jour d'un contact
+     */
+    public function contactUpdate(){
+        if ($this->logSession == true) {
+            $organisme = $this->_service->checkInputFields($_POST, "ctc-organisme");
+            $nom = $this->_service->checkInputFields($_POST, "ctc-nom");
+            $prenom = $this->_service->checkInputFields($_POST, "ctc-prenom");
+            $adrNum = $this->_service->checkInputFields($_POST, "ctc-adr-num");
+            $adrBis = $this->_service->checkInputFields($_POST, "ctc-adr-bis");
+            $adrIdTypesVoie = $this->_service->checkInputFields($_POST, "ctc-adr-type");
+            $adrVoie = $this->_service->checkInputFields($_POST, "ctc-adr-voie");
+            $adrIdLocalites = $this->_service->checkInputFields($_POST, "ctc-adr-loc");
+            $adrCompl = $this->_service->checkInputFields($_POST, "ctc-adr-compl");
+            $email = $this->_service->checkInputFields($_POST, "ctc-email");
+            $tel = $this->_service->checkInputFields($_POST, "ctc-tel");
+            $site = $this->_service->checkInputFields($_POST, "ctc-site");
+            $note = $this->_service->checkInputFields($_POST, "ctc-note");
 
-    //         $depToEdit = $this->departmentModel->findOneBy($depEditId);
+            $userId = $_SESSION["userId"];
+            $idToUpdate = $_POST["ctc-id-hidden"];
 
-    //         $depEditCode = $this->_service->checkInputFields($_POST, "dep-edit-code");
-    //         $depEditLibelle = $this->_service->checkInputFields($_POST, "dep-edit-libelle");
-
-    //         if($this->departmentModel->depExist($depEditCode, $depEditLibelle, $depToEdit['id']) == true){
-    //             $message = "Il existe déjà un département avec ce code ou ce nom";
-    //             $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
-    //         } else {
-    //             if (!empty($depToEdit)) {
-    //                 $depEdit = $this->departmentModel->updateDep($depEditId, $depEditCode, $depEditLibelle, $this->adminId);
-
-    //                 if ($depEdit == true) {
-    //                     $message = "Le département <em class='font-weight-bold'>" . $depEditLibelle . " </em> a bien été modifié";
-    //                     $_SESSION["flashMessage"] = ["status" => "success", "message" => $message];
-    //                 } else {
-    //                     $message = "Le département n'a pas pu être modifié";
-    //                     $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
-    //                 }
+            $contactEdit = $this->contactModel->updateContact($organisme, $nom, $prenom, $adrNum, $adrBis, $adrIdTypesVoie, $adrVoie, $adrIdLocalites, $adrCompl, $email, $tel, $site, $note, $userId, $idToUpdate);
             
-    //                 return header('Location: ' . $this->webroot . 'Admin/adminDashboard');
-    //             }
-    //         }
+            return header('Location: ' . $this->webroot . 'User/userDashboard');
 
-    //     } else {
-    //         return header('Location: ' . $this->webroot . 'Admin');
-    //     }
-    // }
+        } else {
+            return header('Location: ' . $this->webroot . 'User');
+        }
+    }
 
-    // public function departmentDelete(){
-
-    //     if ($this->adminSession == true) {
-
-    //         $depEditId = $this->_service->checkInputFields($_POST, "dep-edit-id");
-
-    //         $depToEdit = $this->departmentModel->findOneBy($depEditId);
-
-    //         if (!empty($depToEdit)) {
-
-    //             $depDelete = $this->departmentModel->deleteDep($depEditId);
-
-    //             if ($depDelete == true) {
-    //                 $message = "Le département <em class='font-weight-bold'>" . $depToEdit["libelle"] . " </em> a bien été supprimé";
-    //                 $_SESSION["flashMessage"] = ["status" => "success", "message" => $message];
-    //             } else {
-    //                 $message = "Le département n'a pas pu être supprimé";
-    //                 $_SESSION["flashMessage"] =["status" => "error", "message" => $message];;
-    //             }
-        
-    //             return header('Location: ' . $this->webroot . 'Admin/adminDashboard');
-    //         }
-
-    //     } else {
-    //         return header('Location: ' . $this->webroot . 'Admin');
-    //     }
-    // }
+    /**
+     * Gestion de la suppression d'un contact
+     */
+    public function contactDelete(){
+        if ($this->logSession == true) {
+            $idToDelete = $_POST["ctc-id-hidden"];
+            $contactDelete = $this->contactModel->deleteContact($idToDelete);
+            return header('Location: ' . $this->webroot . 'User/userDashboard');
+        } else {
+            return header('Location: ' . $this->webroot . 'User');
+        }
+    }
 }
