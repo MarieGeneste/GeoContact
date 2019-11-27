@@ -1,8 +1,10 @@
 <!-- Auteur : Roupsard David (c'est de ma faute)-->
 <section class="panel">
   <div class="container">
-    <form action="User/***" method="post">
+    <form action="User/contactInsert" method="post">
       <div class="form-row">
+        <!-- ID hidden -->
+        <input type="hidden" name="ctc-id-hidden">
         <!-- Organisme -->
         <div class="col-md-4 col-sm-12">
           <label for="ctc-organisme">Organisme<b>*</b></label>
@@ -46,7 +48,7 @@
           <select id="ctc-adr-type" name="ctc-adr-type" class="form-control" placeholder="Type">
             <option value=""></option>
             <?php foreach($typesVoies as $typesVoie) { ?>
-              <option value="<?= $typesVoie["libelle"] ?>"><?= $typesVoie["libelle"] ?></option>
+              <option value="<?= $typesVoie["id"] ?>"><?= $typesVoie["libelle"] ?></option>
             <?php } ?>
           </select>
         </div>
@@ -58,7 +60,11 @@
         <!-- Localité -->
         <div class="col-md-4 col-sm-12">
           <label for="ctc-adr-loc">Localité</label>
-          <input id="ctc-adr-loc" name="ctc-adr-loc" type="text" class="form-control" placeholder="Ville du contact">
+          <select id="ctc-adr-loc" name="ctc-adr-loc" class="form-control" placeholder="Ville du contact">
+            <?php foreach($localites as $localite) { ?>
+              <option value="<?= $localite["id"] ?>"><?= $localite["libelle"] ?></option>
+            <?php } ?>
+          </select>
         </div>
         <!-- Complément -->
         <div class="col-md-4 col-sm-12">
@@ -89,7 +95,8 @@
       </div>
       <span class="require-msg">* champs obligatoires</span>
       <div class="form-group text-right mb-0 mt-3">
-        <button type="submit" class="btn btn-success submit">Ajouter / Modifier</button>
+        <button type="button" class="btn btn-danger contact-delete-btn">Supprimer</button>
+        <button type="submit" class="btn btn-success">Ajouter / Modifier</button>
       </div>
     </form>
   </div>
