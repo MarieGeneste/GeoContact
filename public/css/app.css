@@ -161,7 +161,7 @@ tr.bg-blue-light-geocontact td {
 }
 
 
-#edit-dep, #add-dep, #edit-loc, #add-loc {
+#edit-dep, #add-dep, #edit-loc, #add-loc, #add-contact, #edit-contact {
     display: none;
 }
 
