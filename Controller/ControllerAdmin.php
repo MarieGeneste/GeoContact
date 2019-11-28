@@ -280,6 +280,10 @@ class ControllerAdmin extends Controller {
                 $this->adminId = $_SESSION["adminId"];
                 
                 header('Location: ' . $this->webroot . 'Admin/adminDashboard');
+            } else {
+                $message = "Vos identifiants sont incorrects.";
+                $_SESSION["flashMessage"] = ["status" => "errors", "message" => $message];
+                header('Location: ' . $this->webroot . 'Admin');
             }
         }
     }

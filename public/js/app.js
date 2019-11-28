@@ -149,3 +149,13 @@ $('.contact-delete-btn').click(function () {
     $("button[type=submit]").removeClass('btn-success');
     $("button[type=submit]").addClass('btn-danger');
 });
+
+// Ajoute http devant une URL si besoins
+function checkURL (data) {
+    var string = data.value;
+    if (!~string.indexOf("http") && string.length >= 4) {
+      string = "http://" + string;
+    }
+    data.value = string;
+    return data
+  }
