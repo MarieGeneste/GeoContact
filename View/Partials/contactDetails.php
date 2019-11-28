@@ -22,7 +22,7 @@
         </div>
         <!-- Numéro de voie -->
         <div class="col-md-4 col-sm-12">
-          <label for="ctc-adr-num">Numéro</label>
+          <label for="ctc-adr-num">Numéro<b>*</b></label>
           <input id="ctc-adr-num" name="ctc-adr-num" type="number" min="0" max="9999" class="form-control" placeholder="Numéro de rue" required>
         </div>
         <!-- Multiplicatifs de voie -->
@@ -43,7 +43,7 @@
         </div>
         <!-- Types de voie -->
         <div class="col-md-4 col-sm-12">
-          <label for="ctc-adr-type">Types</label>
+          <label for="ctc-adr-type">Types<b>*</b></label>
           <select id="ctc-adr-type" name="ctc-adr-type" class="form-control" placeholder="Type de voie" required>
             <?php foreach($typesVoies as $typesVoie) { ?>
               <option value="<?= $typesVoie["id"] ?>"><?= $typesVoie["libelle"] ?></option>
@@ -52,12 +52,12 @@
         </div>
         <!-- Voie -->
         <div class="col-md-4 col-sm-12">
-          <label for="ctc-adr-voie">Voie</label>
+          <label for="ctc-adr-voie">Voie<b>*</b></label>
           <input id="ctc-adr-voie" name="ctc-adr-voie" type="text" class="form-control" placeholder="Nom de la voie" required>
         </div>
         <!-- Localité -->
         <div class="col-md-4 col-sm-12">
-          <label for="ctc-adr-loc">Localité</label>
+          <label for="ctc-adr-loc">Localité<b>*</b></label>
           <select id="ctc-adr-loc" name="ctc-adr-loc" class="form-control" placeholder="Nom de la ville" required>
             <?php foreach($localites as $localite) { ?>
               <option value="<?= $localite["id"] ?>"><?= $localite["libelle"] ?></option>
@@ -76,7 +76,7 @@
         </div>
         <!-- Téléphone -->
         <div class="col-md-4 col-sm-12">
-          <label for="ctc-tel">Téléphone</label>
+          <label for="ctc-tel">Téléphone<b>*</b></label>
           <input id="ctc-tel" name="ctc-tel" type="tel" class="form-control" placeholder="Téléphone du contact" required>
         </div>
         <!-- Site -->
@@ -87,7 +87,7 @@
         <!-- Note -->
         <div class="col-md-4 col-sm-12">
           <label for="ctc-note">Note</label>
-          <input id="ctc-note" name="ctc-note" type="text" class="form-control" placeholder="Note">
+          <textarea id="ctc-note" name="ctc-note" type="text" class="form-control" placeholder="Note">
         </div>
       </div>
       <span class="require-msg">* champs obligatoires</span>
