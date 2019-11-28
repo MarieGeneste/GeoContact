@@ -27,8 +27,9 @@
         </div>
         <!-- Multiplicatifs de voie -->
         <div class="col-md-4 col-sm-12">
-          <label for="ctc-adr-bis">Multiplicatif</label>
-          <select id="ctc-adr-bis" name="ctc-adr-bis" class="form-control" placeholder="Multiplicatif">
+          <label for="ctc-adr-bis">Bister</label>
+          <select id="ctc-adr-bis" name="ctc-adr-bis" class="form-control">
+            <option value="0" disabled selected>Veuillez remplir si nécéssaire</option>
             <option value=""></option>
             <option value="bis">bis</option>
             <option value="ter">ter</option>
@@ -45,6 +46,7 @@
         <div class="col-md-4 col-sm-12">
           <label for="ctc-adr-type">Types<b>*</b></label>
           <select id="ctc-adr-type" name="ctc-adr-type" class="form-control" placeholder="Type de voie" required>
+            <option value="0" disabled selected>Veuillez choisir un type de voie</option>
             <?php foreach($typesVoies as $typesVoie) { ?>
               <option value="<?= $typesVoie["id"] ?>"><?= $typesVoie["libelle"] ?></option>
             <?php } ?>
@@ -59,6 +61,7 @@
         <div class="col-md-4 col-sm-12">
           <label for="ctc-adr-loc">Localité<b>*</b></label>
           <select id="ctc-adr-loc" name="ctc-adr-loc" class="form-control" placeholder="Nom de la ville" required>
+            <option value="0" disabled selected>Veuillez choisir une ville</option>
             <?php foreach($localites as $localite) { ?>
               <option value="<?= $localite["id"] ?>"><?= $localite["libelle"] ?></option>
             <?php } ?>
@@ -76,13 +79,13 @@
         </div>
         <!-- Téléphone -->
         <div class="col-md-4 col-sm-12">
-          <label for="ctc-tel">Téléphone<b>*</b></label>
-          <input id="ctc-tel" name="ctc-tel" type="tel" class="form-control" placeholder="Téléphone du contact" required>
+          <label for="ctc-tel">Téléphone<b>*</b></b></label>
+          <input id="ctc-tel" name="ctc-tel" type="tel" class="form-control" placeholder="ex : 06 12 34 57 89" required pattern="(0|\+33|0033)[1-9]((\.| |/)?[0-9]{2}){4}" maxlength="14">
         </div>
         <!-- Site -->
         <div class="col-md-4 col-sm-12">
           <label for="ctc-site">Site</label>
-          <input id="ctc-site" name="ctc-site" type="url" class="form-control" placeholder="Site internet">
+          <input id="ctc-site" name="ctc-site" type="url" class="form-control" placeholder="ex : https://www.monsite.com" onblur="checkURL(this)">
         </div>
         <!-- Note -->
         <div class="col-md-4 col-sm-12">
