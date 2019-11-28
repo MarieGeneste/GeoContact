@@ -475,3 +475,43 @@ nav.admin-navigation .tab{
         display:none;
     }
  }
+
+ /* Formulaire d'ajout et d'édition de contact */
+ .panel-contact {
+     background-color: #efefef;
+     padding: 1.5rem 0;
+ }
+ 
+ .panel-contact label {
+     text-align: center !important;
+     width: 100%;
+ }
+
+.panel-contact input {
+    text-align: center;
+    font-size: 1em !important;
+}
+
+.panel-contact select {
+    text-align-last: center;
+}
+
+.panel-contact b {
+    color: red;
+}
+
+.userConnexionButtons {
+    height: 50px;
+}
+
+.userConnexionButtons > *{
+    text-transform: capitalize;
+}
+
+.userConnexionButtons input,
+.userConnexionButtons a {
+    font-size: 20px !important;
+    height: 100% !important;
+    width: 49%;
+
+}

@@ -1,5 +1,5 @@
 <!-- Auteur : Roupsard David (c'est de ma faute)-->
-<section class="panel">
+<section class="panel-contact">
   <div class="container">
     <form action="User/contactInsert" method="post">
       <div class="form-row">
@@ -8,23 +8,22 @@
         <!-- Organisme -->
         <div class="col-md-4 col-sm-12">
           <label for="ctc-organisme">Organisme<b>*</b></label>
-          <input id="ctc-organisme" name="ctc-organisme" type="text" class="form-control"
-            placeholder="Organisme du contact">
+          <input id="ctc-organisme" name="ctc-organisme" type="text" class="form-control" placeholder="Organisme du contact" required>
         </div>
         <!-- Nom -->
         <div class="col-md-4 col-sm-12">
           <label for="ctc-nom">Nom<b>*</b></label>
-          <input id="ctc-nom" name="ctc-nom" type="text" class="form-control" placeholder="Nom du contact">
+          <input id="ctc-nom" name="ctc-nom" type="text" class="form-control" placeholder="Nom du contact" required>
         </div>
         <!-- Prénom -->
         <div class="col-md-4 col-sm-12">
           <label for="ctc-prenom">Prénom<b>*</b></label>
-          <input id="ctc-prenom" name="ctc-prenom" type="text" class="form-control" placeholder="Prénom du contact">
+          <input id="ctc-prenom" name="ctc-prenom" type="text" class="form-control" placeholder="Prénom du contact" required>
         </div>
         <!-- Numéro de voie -->
         <div class="col-md-4 col-sm-12">
           <label for="ctc-adr-num">Numéro</label>
-          <input id="ctc-adr-num" name="ctc-adr-num" type="number" class="form-control" placeholder="Prénom du contact">
+          <input id="ctc-adr-num" name="ctc-adr-num" type="number" min="0" max="9999" class="form-control" placeholder="Numéro de rue" required>
         </div>
         <!-- Multiplicatifs de voie -->
         <div class="col-md-4 col-sm-12">
@@ -45,8 +44,7 @@
         <!-- Types de voie -->
         <div class="col-md-4 col-sm-12">
           <label for="ctc-adr-type">Types</label>
-          <select id="ctc-adr-type" name="ctc-adr-type" class="form-control" placeholder="Type">
-            <option value=""></option>
+          <select id="ctc-adr-type" name="ctc-adr-type" class="form-control" placeholder="Type de voie" required>
             <?php foreach($typesVoies as $typesVoie) { ?>
               <option value="<?= $typesVoie["id"] ?>"><?= $typesVoie["libelle"] ?></option>
             <?php } ?>
@@ -55,12 +53,12 @@
         <!-- Voie -->
         <div class="col-md-4 col-sm-12">
           <label for="ctc-adr-voie">Voie</label>
-          <input id="ctc-adr-voie" name="ctc-adr-voie" type="text" class="form-control" placeholder="Type de voie">
+          <input id="ctc-adr-voie" name="ctc-adr-voie" type="text" class="form-control" placeholder="Nom de la voie" required>
         </div>
         <!-- Localité -->
         <div class="col-md-4 col-sm-12">
           <label for="ctc-adr-loc">Localité</label>
-          <select id="ctc-adr-loc" name="ctc-adr-loc" class="form-control" placeholder="Ville du contact">
+          <select id="ctc-adr-loc" name="ctc-adr-loc" class="form-control" placeholder="Nom de la ville" required>
             <?php foreach($localites as $localite) { ?>
               <option value="<?= $localite["id"] ?>"><?= $localite["libelle"] ?></option>
             <?php } ?>
@@ -69,8 +67,7 @@
         <!-- Complément -->
         <div class="col-md-4 col-sm-12">
           <label for="ctc-adr-compl">Complément</label>
-          <input id="ctc-adr-compl" name="ctc-adr-compl" type="text" class="form-control"
-            placeholder="Complément de l'adresse">
+          <input id="ctc-adr-compl" name="ctc-adr-compl" type="text" class="form-control" placeholder="Complément d'adresse">
         </div>
         <!-- Mail -->
         <div class="col-md-4 col-sm-12">
@@ -80,7 +77,7 @@
         <!-- Téléphone -->
         <div class="col-md-4 col-sm-12">
           <label for="ctc-tel">Téléphone</label>
-          <input id="ctc-tel" name="ctc-tel" type="tel" class="form-control" placeholder="Téléphone du contact">
+          <input id="ctc-tel" name="ctc-tel" type="tel" class="form-control" placeholder="Téléphone du contact" required>
         </div>
         <!-- Site -->
         <div class="col-md-4 col-sm-12">
@@ -94,9 +91,9 @@
         </div>
       </div>
       <span class="require-msg">* champs obligatoires</span>
-      <div class="form-group text-right mb-0 mt-3">
-        <button type="button" class="btn btn-danger contact-delete-btn">Supprimer</button>
-        <button type="submit" class="btn btn-success">Ajouter / Modifier</button>
+      <div class="form-group text-center mb-0 mt-3">
+        <button type="button" class="btn btn-danger contact-delete-btn d-none"><i class="fas fa-trash text-white"></i></button>
+        <button type="submit" class="btn btn-success">Ajouter</button>
       </div>
     </form>
   </div>

@@ -99,6 +99,9 @@ function getCookie(name) {
 // Lors de l'édition d'un département
 $(".edit-contact-btn").click(function () {
 
+    $(".contact-delete-btn").removeClass('d-none');
+    $(".contact-delete-btn + button").text('Modifier');
+
     // Récupère toutes les données du département à éditer
     var contactId = $(this).find('#contact-id').val();
     var contactOrganisme = $(this).find('#contact-organisme').val();
@@ -142,7 +145,7 @@ $(".edit-contact-btn").click(function () {
 $('.contact-delete-btn').click(function () {
     // Insert l'action dans le formulaire
     $("form").attr("action", "User/contactDelete")
-    $("button[type=submit]").text('Confirmer suppression ?');
+    $("button[type=submit]").text('Confirmer suppr.');
     $("button[type=submit]").removeClass('btn-success');
     $("button[type=submit]").addClass('btn-danger');
 });
