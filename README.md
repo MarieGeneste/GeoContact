@@ -27,6 +27,7 @@ __Conçu avec:__
 __Versions:__  
    20191002_V1
    20191004_V1.1
+   20191128_V1.2
 
 __Auteurs:__   
    L’équipe des apprenants Corrdev :
