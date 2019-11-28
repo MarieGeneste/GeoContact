@@ -145,7 +145,7 @@ $(".edit-contact-btn").click(function () {
 $('.contact-delete-btn').click(function () {
     // Insert l'action dans le formulaire
     $("form").attr("action", "User/contactDelete")
-    $("button[type=submit]").text('Confirmer suppr.');
+    $("button[type=submit]").text('Confirmer suppr ?');
     $("button[type=submit]").removeClass('btn-success');
-    $("button[type=submit]").addClass('btn-danger');
+    $("button[type=submit]").addClass('btn-warning');
 });
