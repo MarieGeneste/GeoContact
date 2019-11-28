@@ -1,5 +1,6 @@
 <?php $this->title = "Connexion admin"; ?>
 
+<?php include("View/Partials/flashMessage.php") ?>
 
 <div id="adminlog" class="container">
     <div class="row">
