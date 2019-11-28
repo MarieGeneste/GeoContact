@@ -165,6 +165,10 @@ class ControllerUser extends Controller {
                 $this->userId = $_SESSION["userId"];
                 
                 header('Location: ' . $this->webroot . 'User/userDashboard');
+            } else {
+                $message = "Vos identifiants sont incorrects.";
+                $_SESSION["flashMessage"] = ["status" => "errors", "message" => $message];
+                header('Location: ' . $this->webroot . 'User');
             }
         }
     }
