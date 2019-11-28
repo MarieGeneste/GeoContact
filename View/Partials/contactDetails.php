@@ -79,7 +79,7 @@
         </div>
         <!-- Téléphone -->
         <div class="col-md-4 col-sm-12">
-          <label for="ctc-tel">Téléphone<b>*</b></label>
+          <label for="ctc-tel">Téléphone<b>*</b></b></label>
           <input id="ctc-tel" name="ctc-tel" type="tel" class="form-control" placeholder="ex : 06 12 34 57 89" required pattern="(0|\+33|0033)[1-9]((\.| |/)?[0-9]{2}){4}" maxlength="14">
         </div>
         <!-- Site -->
