@@ -29,8 +29,7 @@
         <div class="col-md-4 col-sm-12">
           <label for="ctc-adr-bis">Bister</label>
           <select id="ctc-adr-bis" name="ctc-adr-bis" class="form-control">
-            <option value="0" disabled selected>Veuillez remplir si nécéssaire</option>
-            <option value=""></option>
+            <option value="0" selected>Veuillez remplir si nécéssaire</option>
             <option value="bis">bis</option>
             <option value="ter">ter</option>
             <option value="quater">quater</option>
