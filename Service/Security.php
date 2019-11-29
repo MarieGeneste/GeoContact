@@ -13,7 +13,7 @@ class Security
         }
         else
         {
-            throw new Exception("Le champs ". $name ."n'est pas renseigné");
+            throw new Exception("Le champs ". $name ." n'est pas renseigné");
         }
     }
 

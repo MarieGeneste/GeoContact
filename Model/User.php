@@ -25,7 +25,7 @@ class User extends Model {
 
     public function insertUser($email, $lastname, $firstname, $password, $idrole) {
 
-        $sql = "INSERT INTO Users (email, nom, prenom, password, idRoles) VALUES (:email, :nom, :prenom, :password, :idRoles)";
+        $sql = "INSERT INTO " . self::$_prefix . "Users (email, nom, prenom, password, idRoles) VALUES (:email, :nom, :prenom, :password, :idRoles)";
             if ($this->executeRequest($sql, ["email" => $email, "nom" => $lastname, "prenom" => $firstname, "password" => $password, "idRoles" => $idrole])){
                 return true;
             } else {
