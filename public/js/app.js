@@ -159,3 +159,33 @@ function checkURL (data) {
     data.value = string;
     return data
 }
+
+// autocompletion
+
+$('#ctc-adr-loc-input').on('keypress', function(){
+    let input_val = $('#ctc-adr-loc-input').val();
+    let select_val = $('#ctc-adr-loc');
+
+    if (input_val.length > 0 ) {
+        select_val.html('');
+        $.ajax({
+            url: "User/AjaxSearchLoc",
+            method: "POST",
+            data: {searchval: input_val},
+            dataType : 'JSON',
+            cache : false,
+            success : function(data){
+                let arrayResult = data.loc;
+                for(i=0; i<arrayResult.length; i++){
+                    select_val.append(template_datalist(arrayResult));
+                }
+            }
+        });
+    }
+})
+
+
+function template_datalist(variable) {
+    let template = "<option value='"+variable[i]['libelle']+"'>"+variable[i]['libelle']+"</option>";
+    return template;
+}
