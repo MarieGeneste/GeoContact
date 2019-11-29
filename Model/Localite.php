@@ -14,6 +14,15 @@ class Localite extends Model {
         return $localites->fetchAll();
     }
 
+     /** 
+     * Ici, ajouter les fonctions de récupération de données voulue
+     */
+     public function getAutocompletion($search) {
+        $localites = $this->executeRequest("SELECT libelle FROM " . self::$_prefix . "Localites WHERE libelle LIKE '".$search."%'");
+
+        return $localites->fetchAll();
+    }
+
     /** 
      * Retourne une localité
      * var $depId = id de la localité recherchée

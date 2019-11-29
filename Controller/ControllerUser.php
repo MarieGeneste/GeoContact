@@ -258,4 +258,14 @@ class ControllerUser extends Controller {
             return header('Location: ' . $this->webroot . 'User');
         }
     }
+
+    public function AjaxSearchLoc(){
+        $valeur = $_POST['searchval'];
+        
+        $result = $this->localiteModel->getAutocompletion($valeur);
+             
+        $json = [];
+        $json['loc'] = $result;
+        echo json_encode($json);
+    }
 }

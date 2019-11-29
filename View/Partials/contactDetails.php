@@ -45,6 +45,7 @@
         <!-- Types de voie -->
         <div class="col-md-4 col-sm-12">
           <label for="ctc-adr-type">Types<b>*</b></label>
+          
           <select id="ctc-adr-type" name="ctc-adr-type" class="form-control" placeholder="Type de voie" required>
             <option value="0" disabled selected>Veuillez choisir un type de voie</option>
             <?php foreach($typesVoies as $typesVoie) { ?>
@@ -60,12 +61,9 @@
         <!-- Localité -->
         <div class="col-md-4 col-sm-12">
           <label for="ctc-adr-loc">Localité<b>*</b></label>
-          <select id="ctc-adr-loc" name="ctc-adr-loc" class="form-control" placeholder="Nom de la ville" required>
-            <option value="0" disabled selected>Veuillez choisir une ville</option>
-            <?php foreach($localites as $localite) { ?>
-              <option value="<?= $localite["id"] ?>"><?= $localite["libelle"] ?></option>
-            <?php } ?>
-          </select>
+          <input list="ctc-adr-loc" type="text" id="ctc-adr-loc-input" placeholder="Type de voie" class="form-control">
+          <datalist id="ctc-adr-loc" name="ctc-adr-loc" class="form-control" placeholder="Nom de la ville" required style="display:none">
+          </datalist>
         </div>
         <!-- Complément -->
         <div class="col-md-4 col-sm-12">
