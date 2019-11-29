@@ -135,7 +135,7 @@ $(".edit-contact-btn").click(function () {
     $("input[name=ctc-email]").val(contactEmail);
     $("input[name=ctc-tel]").val(contactTel);
     $("input[name=ctc-site]").val(contactSite);
-    $("input[name=ctc-note]").val(contactNote);
+    $("textarea[name=ctc-note]").val(contactNote);
 
     // Fait apparaitre le formulaire d'édition
     $("#edit-contact").slideDown();
@@ -158,4 +158,4 @@ function checkURL (data) {
     }
     data.value = string;
     return data
-  }
+}

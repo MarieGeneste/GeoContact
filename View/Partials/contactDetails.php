@@ -90,7 +90,7 @@
         <!-- Note -->
         <div class="col-md-4 col-sm-12">
           <label for="ctc-note">Note</label>
-          <textarea id="ctc-note" name="ctc-note" type="text" class="form-control" placeholder="Note">
+          <textarea id="ctc-note" name="ctc-note" class="form-control" placeholder="Note"></textarea>
         </div>
       </div>
       <span class="require-msg">* champs obligatoires</span>
